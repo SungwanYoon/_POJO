@@ -39,6 +39,10 @@ body {
   border-radius: 20px;
 }
 
+.ghost {
+  display: none;
+}
+
 .perspective-on {
   -webkit-perspective: 1000px;
   -moz-perspective: 1000px;
@@ -82,7 +86,12 @@ body {
 
 .ring-red div {
   border: 3px solid red;
-  transition: border 4s;
+  transition: border 4s, background-color 4s;
+}
+
+.bg-red {
+  background-color: hotpink;
+  transition: ;
 }
 
 .backface-on {
@@ -92,7 +101,7 @@ body {
 }
 
 .slot p {
-  font-size: 36px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 80px;
   margin: 0;

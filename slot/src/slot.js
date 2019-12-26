@@ -1,9 +1,15 @@
+const body = document.querySelector("body");
+
 const SLOTS_PER_REEL = 12;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) );
 // current settings give a value of 149, rounded to 150
 const REEL_RADIUS = 150;
 
 function createSlots(ring) {
+  const textarea = body.querySelector("textarea");
+  const repText = textarea.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  const arrText = repText.split("<br>");
+
   var slotAngle = 360 / SLOTS_PER_REEL;
 
   var seed = getSeed();
@@ -22,7 +28,7 @@ function createSlots(ring) {
     // setup the number to show inside the slots
     // the position is randomized to
 
-    var content = $(slot).append("<p>" + ((seed + i) % 12) + "</p>");
+    var content = $(slot).append("<p>" + getPlayer(arrText) + "</p>");
 
     // add the poster to the row
     ring.append(slot);
@@ -38,8 +44,13 @@ function getCell() {
   return +Math.floor(Math.random() * 5) + 1;
 }
 
+function getPlayer(arr) {
+  const playerIdx = Math.floor(Math.random() * arr.length);
+  const player = arr[playerIdx];
+  return player == "" ? arr[playerIdx - 1] : player;
+}
+
 function spin(timer) {
-  const body = document.querySelector("body");
   const ring = body.querySelector("#ring" + getCell());
 
   //var txt = 'seeds: ';
@@ -72,6 +83,7 @@ function spin(timer) {
   const ring_step = ring.classList[1].replace("spin-", "");
   const ring_ntr = ring_step > 7 ? +ring_step - 8 : +ring_step + 4;
   console.log($("#" + ring.id + " div:eq(" + ring_ntr + ")"));
+  $("#" + ring.id + " div:eq(" + ring_ntr + ")").addClass("bg-red");
 }
 
 $(document).ready(function() {
