@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const textarea = body.querySelector("textarea");
 
 const SLOTS_PER_REEL = 12;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) );
@@ -6,7 +7,6 @@ const SLOTS_PER_REEL = 12;
 const REEL_RADIUS = 150;
 
 function createSlots(ring) {
-  const textarea = body.querySelector("textarea");
   const repText = textarea.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
   const arrText = repText.split("<br>");
 
@@ -77,7 +77,7 @@ function spin(timer) {
         "back-spin 1s, spin-" + seed + " " + (timer + i * 0.5) + "s"
       )
       .attr("class", "ring spin-" + seed);
-    console.log("[" + i + "] : " + oldSeed);
+    //console.log("[" + i + "] : " + oldSeed);
   }
 
   ring.classList.add("ring-red");
@@ -85,6 +85,21 @@ function spin(timer) {
   const ring_ntr = ring_step > 7 ? +ring_step - 8 : +ring_step + 4;
   console.log($("#" + ring.id + " div:eq(" + ring_ntr + ")"));
   $("#" + ring.id + " div:eq(" + ring_ntr + ")").addClass("bg-red");
+
+  setTimeout(() => {
+    $("#exampleModal").modal();
+    const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
+    $(".modal-body").empty();
+    $(".modal-body").append(선수이름);
+  }, timer * 1000 + 1500);
+}
+
+function resetRing() {
+  $("#ring1").empty();
+  $("#ring2").empty();
+  $("#ring3").empty();
+  $("#ring4").empty();
+  $("#ring5").empty();
 }
 
 $(document).ready(function() {
@@ -97,12 +112,14 @@ $(document).ready(function() {
 
   // hook start button
   $(".go").on("click", function() {
+    resetRing();
     createSlots($("#ring1"));
     createSlots($("#ring2"));
     createSlots($("#ring3"));
     createSlots($("#ring4"));
     createSlots($("#ring5"));
-    var timer = 2;
+
+    var timer = 3;
     spin(timer);
   });
 
@@ -133,6 +150,20 @@ $(document).ready(function() {
   // hook perspective
   $("#perspective").on("click", function() {
     $("#stage").toggleClass("perspective-on perspective-off");
+  });
+
+  $("#deleteBtn").on("click", function(e) {
+    e.preventDefault();
+    const playerName = $(".modal-body").text();
+    textarea.value = textarea.value.replace(playerName, "");
+    $("textarea").focusout();
+  });
+
+  $("textarea").focusout(function() {
+    var avalue = $("textarea").val();
+    var newVal = avalue.replace(/^\s*[\r\n]/gm, "");
+    //var finalResults = newVal.replace("\n", "");
+    $("textarea").val(newVal);
   });
 
   console.log("let's start");

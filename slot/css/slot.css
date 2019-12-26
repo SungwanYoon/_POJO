@@ -94,6 +94,23 @@ body {
   transition: ;
 }
 
+.ring-ding-dong {
+  width: 500px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: -160px;
+  top: -55px;
+  border: 5px solid red;
+  background-color: pink;
+  opacity: 1;
+}
+
+.ring-ding-dong p {
+  font-size: 30px;
+}
+
 .backface-on {
   -webkit-backface-visibility: visible;
   -moz-backface-visibility: visible;
