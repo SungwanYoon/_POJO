@@ -31,6 +31,7 @@ function createSlots(ring) {
     var content = $(slot).append("<p>" + getPlayer(arrText) + "</p>");
 
     // add the poster to the row
+
     ring.append(slot);
   }
 }
@@ -96,6 +97,11 @@ $(document).ready(function() {
 
   // hook start button
   $(".go").on("click", function() {
+    createSlots($("#ring1"));
+    createSlots($("#ring2"));
+    createSlots($("#ring3"));
+    createSlots($("#ring4"));
+    createSlots($("#ring5"));
     var timer = 2;
     spin(timer);
   });
