@@ -91,6 +91,7 @@ function spin(timer) {
     const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
     $(".modal-body").empty();
     $(".modal-body").append(선수이름);
+    audioPlay();
   }, timer * 1000 + 1500);
 }
 
@@ -100,6 +101,16 @@ function resetRing() {
   $("#ring3").empty();
   $("#ring4").empty();
   $("#ring5").empty();
+}
+
+function audioPlay() {
+  var audio = document.getElementById("audio_play");
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
 }
 
 $(document).ready(function() {
