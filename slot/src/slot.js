@@ -53,8 +53,19 @@ function getCell() {
 }
 
 function getPlayer(arr) {
-  const playerIdx = Math.floor(Math.random() * arr.length);
-  const player = arr[playerIdx];
+  let doWhile = true;
+  let playerIdx = 0;
+  let player = "";
+  if (textarea.value != "") {
+    while (doWhile == true) {
+      playerIdx = Math.floor(Math.random() * arr.length);
+      player = arr[playerIdx];
+      console.log(player);
+      if (player != "") {
+        doWhile = false;
+      }
+    }
+  }
   //return player == "" ? arr[playerIdx - 1] : player;
   return player;
 }
