@@ -107,6 +107,10 @@ button:focus {
   transform-style: preserve-3d;
 }
 
+.rotate__bottom {
+  padding-top: 250px;
+}
+
 .ring {
   margin: 0 auto;
   height: 80px;
@@ -392,6 +396,9 @@ label {
   .slot {
     width: 90px;
   }
+  .rotate__bottom {
+    padding-top: 125px;
+  }
 }
 @media screen and (max-width: 520px) {
   #rotate {
@@ -403,5 +410,8 @@ label {
   }
   .slot {
     width: 45px;
+  }
+  .rotate__bottom {
+    margin: 70px 70px;
   }
 }
