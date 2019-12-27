@@ -10,7 +10,7 @@ body {
   justify-content: center;
   align-items: center;
 
-  background-color: white;
+  background-color: #f5f6fa;
   padding: 10px 10px; /*TopBottom , LeftRight*/
   columns: #020202;
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -46,7 +46,7 @@ button:focus {
 #stage {
   padding: 0 auto;
   width: 1400px;
-  padding: 0 0 40px;
+  padding: 0 0 100px;
 }
 
 .stage__left {
@@ -122,7 +122,7 @@ button:focus {
   opacity: 0.9;
   color: #2f3640;
   background: #fff;
-  border: solid 2px #7f8fa6;
+  border: solid 2px #40739e;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -331,4 +331,52 @@ label {
   100% {
     transform: rotateX(-4049deg);
   }
+}
+
+/* CHAT Area */
+.chat__write-container {
+  position: fixed;
+  margin: 0 auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /*box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);*/
+}
+.chat__write {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 auto;
+  bottom: 0px;
+  width: 100%;
+  /* border: 5px solid #40739e; */
+  border-radius: 0;
+  padding: 20px 60px;
+  width: 100%;
+  border: none;
+  transition: width 0.5s ease-in, border-radious 0.5s ease-in,
+    transform 0.5s ease-in;
+}
+
+.chat__write:focus {
+  outline: none;
+  width: 80%;
+  margin: 0 auto;
+  transform: translateY(-100px);
+  border-radius: 40px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+    0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+}
+.chat__write-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat__write-column:nth-child(2) {
+  width: 80%;
 }

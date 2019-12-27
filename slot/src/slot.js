@@ -6,6 +6,8 @@ let slotting = false;
 let repText = "";
 let arrText = "";
 
+let 선수이름 = "";
+
 const SLOTS_PER_REEL = 12;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) );
 // current settings give a value of 149, rounded to 150
@@ -53,7 +55,8 @@ function getCell() {
 function getPlayer(arr) {
   const playerIdx = Math.floor(Math.random() * arr.length);
   const player = arr[playerIdx];
-  return player == "" ? arr[playerIdx - 1] : player;
+  //return player == "" ? arr[playerIdx - 1] : player;
+  return player;
 }
 
 function spin(timer) {
@@ -95,7 +98,7 @@ function spin(timer) {
 
   // pesdb 사이트 검색
 
-  const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
+  선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
   const 선수 = pList.filter(function(pList) {
     return pList.name === 선수이름;
   });
@@ -219,8 +222,9 @@ $(document).ready(function() {
 
   $("#deleteBtn").on("click", function(e) {
     e.preventDefault();
-    const playerName = $(".modal-body").text();
-    textarea.value = textarea.value.replace(playerName, "");
+    //const playerName = $(".modal-body").text();
+    textarea.value = textarea.value.replace(선수이름, "");
+    //console.log(playerName);
     $("textarea").focusout();
   });
 
