@@ -58,6 +58,7 @@ function getPlayer(arr) {
 
 function spin(timer) {
   slotting = true;
+  $("#xray").click();
   const ring = body.querySelector("#ring" + getCell());
 
   //var txt = 'seeds: ';
@@ -99,6 +100,7 @@ function spin(timer) {
     $(".modal-body").append(선수이름);
     audioPlay();
     slotting = false;
+    $("#xray").click();
   }, timer * 1000 + 2500);
 }
 
