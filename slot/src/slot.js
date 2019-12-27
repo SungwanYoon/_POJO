@@ -1,6 +1,8 @@
 const body = document.querySelector("body");
 const textarea = body.querySelector("textarea");
 
+let slotting = false;
+
 let repText = "";
 let arrText = "";
 
@@ -55,6 +57,7 @@ function getPlayer(arr) {
 }
 
 function spin(timer) {
+  slotting = true;
   const ring = body.querySelector("#ring" + getCell());
 
   //var txt = 'seeds: ';
@@ -95,6 +98,7 @@ function spin(timer) {
     $(".modal-body").empty();
     $(".modal-body").append(선수이름);
     audioPlay();
+    slotting = false;
   }, timer * 1000 + 2500);
 }
 
@@ -104,6 +108,7 @@ function resetRing() {
   arrText = repText.split("<br>");
 
   for (let sNum = 0; sNum < slots.length; sNum++) {
+    slots[sNum].classList.remove("bg-red");
     const slotPlayer = slots[sNum].querySelector("p");
     slotPlayer.innerHTML = getPlayer(arrText);
   }
@@ -129,10 +134,13 @@ $(document).ready(function() {
 
   // hook start button
   $(".go").on("click", function() {
-    resetRing();
-
-    var timer = 3;
-    spin(timer);
+    if (slotting) {
+      console.log("spinning");
+    } else {
+      resetRing();
+      var timer = 3;
+      spin(timer);
+    }
   });
 
   // hook xray checkbox
