@@ -1,14 +1,17 @@
 const body = document.querySelector("body");
 const textarea = body.querySelector("textarea");
 
+let repText = "";
+let arrText = "";
+
 const SLOTS_PER_REEL = 12;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) );
 // current settings give a value of 149, rounded to 150
 const REEL_RADIUS = 150;
 
 function createSlots(ring) {
-  const repText = textarea.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
-  const arrText = repText.split("<br>");
+  repText = textarea.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  arrText = repText.split("<br>");
 
   var slotAngle = 360 / SLOTS_PER_REEL;
 
@@ -92,15 +95,18 @@ function spin(timer) {
     $(".modal-body").empty();
     $(".modal-body").append(선수이름);
     audioPlay();
-  }, timer * 1000 + 1500);
+  }, timer * 1000 + 2500);
 }
 
 function resetRing() {
-  $("#ring1").empty();
-  $("#ring2").empty();
-  $("#ring3").empty();
-  $("#ring4").empty();
-  $("#ring5").empty();
+  const slots = body.querySelectorAll(".slot");
+  repText = textarea.value.replace(/(?:\r\n|\r|\n)/g, "<br>");
+  arrText = repText.split("<br>");
+
+  for (let sNum = 0; sNum < slots.length; sNum++) {
+    const slotPlayer = slots[sNum].querySelector("p");
+    slotPlayer.innerHTML = getPlayer(arrText);
+  }
 }
 
 function audioPlay() {
@@ -124,11 +130,6 @@ $(document).ready(function() {
   // hook start button
   $(".go").on("click", function() {
     resetRing();
-    createSlots($("#ring1"));
-    createSlots($("#ring2"));
-    createSlots($("#ring3"));
-    createSlots($("#ring4"));
-    createSlots($("#ring5"));
 
     var timer = 3;
     spin(timer);

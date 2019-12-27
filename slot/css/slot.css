@@ -42,6 +42,10 @@ body {
   padding: 10px 10px;
 }
 
+.stage__right textarea:focus {
+  outline: none;
+}
+
 .ghost {
   display: none;
 }
@@ -89,12 +93,12 @@ body {
 
 .ring-red div {
   border: 3px solid red;
-  transition: border 4s, background-color 4s;
+  transition: background-color 6s, border 4s;
 }
 
 .bg-red {
   background-color: hotpink;
-  transition: ;
+  transition: background-color 4s;
 }
 
 .ring-ding-dong {
