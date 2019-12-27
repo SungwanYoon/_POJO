@@ -101,6 +101,7 @@ function spin(timer) {
   });
 
   setTimeout(function() {
+    coinSound();
     $("#exampleModal").modal();
 
     $(".modal-body").empty();
@@ -115,7 +116,7 @@ function spin(timer) {
       $(".modal-body").append(aTag);
     }
 
-    audioPlay();
+    screamPlay();
     slotting = false;
     $("#xray").click();
   }, timer * 1000 + 2500);
@@ -133,8 +134,28 @@ function resetRing() {
   }
 }
 
-function audioPlay() {
-  var audio = document.getElementById("audio_play");
+function coinSound() {
+  var audio = document.getElementById("coin-sound");
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+function startPlay() {
+  var audio = document.getElementById("start-sound");
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+function screamPlay() {
+  var audio = document.getElementById("scream-sound");
   if (audio.paused) {
     audio.play();
   } else {
@@ -153,12 +174,17 @@ $(document).ready(function() {
 
   // hook start button
   $(".go").on("click", function() {
+    startPlay();
+
     if (slotting) {
       //console.log("spinning");
     } else {
-      resetRing();
-      var timer = 3;
-      spin(timer);
+      coinSound();
+      setTimeout(function() {
+        resetRing();
+        var timer = 3;
+        spin(timer);
+      }, 800);
     }
   });
 
