@@ -90,10 +90,10 @@ function spin(timer) {
   ring.classList.add("ring-red");
   const ring_step = ring.classList[1].replace("spin-", "");
   const ring_ntr = ring_step > 7 ? +ring_step - 8 : +ring_step + 4;
-  console.log($("#" + ring.id + " div:eq(" + ring_ntr + ")"));
+  //console.log($("#" + ring.id + " div:eq(" + ring_ntr + ")"));
   $("#" + ring.id + " div:eq(" + ring_ntr + ")").addClass("bg-red");
 
-  setTimeout(() => {
+  setTimeout(function() {
     $("#exampleModal").modal();
     const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
     $(".modal-body").empty();
@@ -137,7 +137,7 @@ $(document).ready(function() {
   // hook start button
   $(".go").on("click", function() {
     if (slotting) {
-      console.log("spinning");
+      //console.log("spinning");
     } else {
       resetRing();
       var timer = 3;
@@ -188,5 +188,5 @@ $(document).ready(function() {
     $("textarea").val(newVal);
   });
 
-  console.log("let's start");
+  //console.log("let's start");
 });
