@@ -141,6 +141,9 @@ body {
   line-height: 80px;
   margin: 0;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .go {
