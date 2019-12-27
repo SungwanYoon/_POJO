@@ -380,3 +380,28 @@ label {
 .chat__write-column:nth-child(2) {
   width: 80%;
 }
+
+@media screen and (max-width: 920px) {
+  #rotate {
+    width: 450px;
+  }
+
+  .ring {
+    width: 90px;
+  }
+  .slot {
+    width: 90px;
+  }
+}
+@media screen and (max-width: 520px) {
+  #rotate {
+    width: 225px;
+  }
+
+  .ring {
+    width: 45px;
+  }
+  .slot {
+    width: 45px;
+  }
+}
