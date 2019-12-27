@@ -93,11 +93,28 @@ function spin(timer) {
   //console.log($("#" + ring.id + " div:eq(" + ring_ntr + ")"));
   $("#" + ring.id + " div:eq(" + ring_ntr + ")").addClass("bg-red");
 
+  // pesdb 사이트 검색
+
+  const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
+  const 선수 = pList.filter(function(pList) {
+    return pList.name === 선수이름;
+  });
+
   setTimeout(function() {
     $("#exampleModal").modal();
-    const 선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
+
     $(".modal-body").empty();
-    $(".modal-body").append(선수이름);
+    $(".modal-body").append(선수이름 + "<br/>");
+    if (선수.length == 0) {
+      $(".modal-body").append("검색가능한 선수가 아닙니다.");
+    } else {
+      const aTag = document.createElement("a");
+      aTag.setAttribute("href", "http://pesdb.net/pes2020/?id=" + 선수[0].id);
+      aTag.setAttribute("target", "_blank");
+      aTag.append("PESDB Site GOGO!");
+      $(".modal-body").append(aTag);
+    }
+
     audioPlay();
     slotting = false;
     $("#xray").click();
