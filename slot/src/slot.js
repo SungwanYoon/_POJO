@@ -170,6 +170,7 @@ function startPlay() {
 
 function screamPlay() {
   var audio = document.getElementById("scream-sound");
+  audio.volume = 0.5;
   if (audio.paused) {
     audio.play();
   } else {
@@ -237,6 +238,7 @@ $(document).ready(function() {
     textarea.value = textarea.value.replace(선수이름, "");
     //console.log(playerName);
     $("textarea").focusout();
+    $("#closeBtn").click();
   });
 
   $("textarea").focusout(function() {
