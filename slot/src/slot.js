@@ -60,7 +60,7 @@ function getPlayer(arr) {
     while (doWhile == true) {
       playerIdx = Math.floor(Math.random() * arr.length);
       player = arr[playerIdx];
-      console.log(player);
+      //console.log(player);
       if (player != "") {
         doWhile = false;
       }
@@ -179,6 +179,28 @@ function screamPlay() {
   }
 }
 
+function clipboardCopy() {
+  const tmpTxt = document.createElement("textarea");
+  tmpTxt.style.position = "fixed";
+  tmpTxt.style.top = 0;
+  tmpTxt.style.left = 0;
+  tmpTxt.style.width = "2em";
+  tmpTxt.style.height = "2em";
+  tmpTxt.style.padding = 0;
+  tmpTxt.style.border = "none";
+  tmpTxt.style.outline = "none";
+  tmpTxt.style.boxShadow = "none";
+  tmpTxt.style.background = "transparent";
+  tmpTxt.value = 선수이름;
+  const modalBody = document.querySelector(".modal-body");
+  modalBody.appendChild(tmpTxt);
+  tmpTxt.focus();
+  tmpTxt.select();
+  let succesful = document.execCommand("copy");
+  modalBody.removeChild(tmpTxt);
+  console.log("copy : ", succesful);
+}
+
 $(document).ready(function() {
   // 1.슬롯만들기
   createSlots($("#ring1"));
@@ -237,8 +259,14 @@ $(document).ready(function() {
     //const playerName = $(".modal-body").text();
     textarea.value = textarea.value.replace(선수이름, "");
     //console.log(playerName);
+
+    clipboardCopy();
     $("textarea").focusout();
     $("#closeBtn").click();
+  });
+
+  $("#closeBtn").on("click", function(e) {
+    clipboardCopy();
   });
 
   $("textarea").focusout(function() {
@@ -246,6 +274,10 @@ $(document).ready(function() {
     var newVal = avalue.replace(/^\s*[\r\n]/gm, "");
     //var finalResults = newVal.replace("\n", "");
     $("textarea").val(newVal);
+  });
+
+  $(".clear-text").click(function() {
+    $("textarea").val("");
   });
 
   //console.log("let's start");

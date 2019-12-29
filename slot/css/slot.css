@@ -385,6 +385,34 @@ label {
   width: 80%;
 }
 
+.chat__write i {
+  font-size: 22px;
+  padding: 0px 5px;
+}
+.chat__icon {
+  font-size: 30px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.clear-text {
+  cursor: pointer;
+}
+
+.chat__icon-left {
+  position: absolute;
+  left: 10px;
+}
+
+.chat__icon-right {
+  position: absolute;
+  right: 10px;
+}
+
+.chat__write:focus ~ .chat__icon {
+  /* ~ is Sibling */
+  opacity: 0;
+}
+
 @media screen and (max-width: 920px) {
   #rotate {
     width: 450px;
