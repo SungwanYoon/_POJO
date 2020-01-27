@@ -121,7 +121,7 @@ function spin(timer) {
     $(".modal-body").empty();
     $(".modal-body").append(선수이름 + "<br/>");
     if (선수.length == 0) {
-      $(".modal-body").append("검색가능한 선수가 아닙니다.");
+      //$(".modal-body").append("검색가능한 선수가 아닙니다.");
     } else {
       const aTag = document.createElement("a");
       aTag.setAttribute("href", "http://pesdb.net/pes2020/?id=" + 선수[0].id);
