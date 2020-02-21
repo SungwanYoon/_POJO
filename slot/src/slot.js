@@ -198,7 +198,7 @@ function clipboardCopy() {
   tmpTxt.select();
   let succesful = document.execCommand("copy");
   modalBody.removeChild(tmpTxt);
-  console.log("copy : ", succesful);
+  //console.log("copy : ", succesful);
 }
 
 $(document).ready(function() {
