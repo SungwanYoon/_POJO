@@ -1,0 +1,65 @@
+@import "reset.css";
+@import "range.css";
+
+.videoPlayer {
+  position: relative;
+}
+.videoPlayer:hover .videoPlayer__controllers {
+  opacity: 1;
+}
+video {
+  width: 50%;
+  max-width: 50%;
+}
+.videoPlayer__controllers {
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.4s linear;
+  color: white;
+  position: absolute;
+  z-index: 9;
+  bottom: 5px;
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 16px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #2c3e50;
+}
+.videoPlayer__column:first-child {
+  display: flex;
+  align-items: center;
+}
+#jsVolumeBtn {
+  margin-right: 10px;
+}
+.videoPlayer__volume {
+  position: absolute;
+  padding: 0;
+  opacity: 1;
+  top: -60px;
+  left: -25px;
+  transform: rotate(-90deg);
+  z-index: 10;
+  width: 80px;
+}
+input {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.videoPlayer__column:last-child {
+  justify-self: end;
+}
+.videoPlayer__column:nth-child(2) {
+  justify-self: center;
+}
+i {
+  font-size: 25px;
+  cursor: pointer;
+}

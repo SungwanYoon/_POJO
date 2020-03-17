@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video Player</title>
+    <meta charset="UTF-8" />
+  </head>
+  <link rel="stylesheet" href="./src/style.css" />
+  <script
+    src="https://kit.fontawesome.com/bf7eb55d89.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <body>
+    <div class="videoPlayer" id="jsVideoPlayer">
+      <video
+        crossorigin
+        playsinline
+        width="700px"
+        src="https://serranoarevalo.github.io/notflix/9bfd1023900e31286103369c803c7ee9.ogv"
+        id="player"
+      ></video>
+      <div class="videoPlayer__controllers">
+        <div class="videoplayer__column">
+          <span id="jsPlayButton">
+            <i class="fas fa-play"></i>
+          </span>
+        </div>
+        <div class="videoplayer__column">
+          <input
+            id="jsTime"
+            type="range"
+            min="0"
+            max="1"
+            value="0"
+            step="0.1"
+          />
+          <span>
+            <span id="currentTime">00:00</span>
+            <span> / </span>
+            <span id="totalTime">10:00</span>
+          </span>
+        </div>
+        <div class="videoplayer__column">
+          <span id="jsVolumeBtn">
+            <i class="fas fa-volume-up"></i>
+          </span>
+          <input
+            id="jsVolume"
+            type="range"
+            min="0"
+            max="1"
+            value="0.5"
+            step="0.1"
+          />
+        </div>
+        <div class="videoplayer__column">
+          <span id="jsFullScreen">
+            <i class="fas fa-expand"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
