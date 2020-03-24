@@ -1,0 +1,10 @@
+.coinRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.coinRow div {
+  padding: 2px 5px;
+}
