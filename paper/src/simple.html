@@ -1,0 +1,1406 @@
+<script src="/js/dmOrder.ui.js"></script>
+<!--  sub layout -->
+<div class="sub_visual" data-category="custom_dm">
+  CUSTOM PR DM
+</div>
+<section id="맞춤홍보DM주문하기" class="content ghost" data-type="order_sec">
+  <!-- 주문하기 step있는 경우만 data-type="order_sec" -->
+  <div class="info_title">
+    <h2 class="tit">맞춤홍보DM 주문하기</h2>
+  </div>
+  <div class="order_step_sec" id="orderMenu">
+    <ul>
+      <li><a href="#step1">발송타겟 선택</a></li>
+      <li><a href="#step2">디자인 / 제작물 기본 정보</a></li>
+      <li><a href="#step3">발신자 정보</a></li>
+      <li><a href="#step4">봉투 표기 내용</a></li>
+      <li id="saveNpurchase"><a href="#">저장 및 결제</a></li>
+    </ul>
+  </div>
+  <div class="order_input_sec">
+    <div class="i_cont" id="step1">
+      <h3 class="title_text" data-level="2">
+        01. 발송타겟 선택
+      </h3>
+      <div class="custom_target_sec">
+        <ul class="target_select_list">
+          <!-- <li class="on">
+						<a href="#">My 주소록 불러오기</a>
+					</li> -->
+          <li>
+            <a href="#">배달국 선택</a>
+          </li>
+          <li>
+            <a href="#">지도에서 선택</a>
+          </li>
+          <li>
+            <a href="#">업종으로 선택</a>
+          </li>
+          <li>
+            <a href="#">주소로 선택</a>
+          </li>
+        </ul>
+        <div style="height: 15px;margin-bottom:10px;"></div>
+        <!-- <div class="design_question">
+					<p class="que">타겟선정기준 가이드</p>
+				</div> -->
+        <div class="btn_list" data-align="center">
+          <button id="발송타겟설정버튼" type="button" class="out_field_btn">
+            발송 타겟 설정 열기
+          </button>
+        </div>
+        <div class="custom_target_total">
+          <ul>
+            <li class="dot_noti">
+              1000통 이상은 <span>동일 배달국 발송 기준</span>으로 계산
+            </li>
+            <li class="dot_noti">
+              맞춤홍보DM은 동일 배달국 기준
+              <span>1000통 이상부터 ‘생활정보홍보우편물’ 할인가</span> 적용
+            </li>
+          </ul>
+          <p class="total_price">
+            발송 타겟 선정 결과&nbsp;&nbsp;&nbsp;총
+            <span id="발송타겟선정결과건수">0</span> 건
+          </p>
+        </div>
+        <div style="height: 15px;margin-bottom:10px;"></div>
+        <!-- <div class="design_question">
+					<p class="que">생활정보홍보우편물 가격 정책</p>
+				</div> -->
+      </div>
+    </div>
+    <div class="i_cont" id="step2">
+      <h3 class="title_text" data-level="2">
+        02. 디자인 / 제작물 정보 입력
+      </h3>
+      <div class="tab order_tab" id="orderTab">
+        <ul>
+          <li><a href="#customDesign">디자인 템플릿 / 편집의뢰</a></li>
+          <li><a href="#fileDesign">디자인 파일 등록</a></li>
+        </ul>
+        <div class="d_cont" id="customDesign">
+          <form id="템플릿선택주문양식">
+            <div class="find_design">
+              <input
+                id="디자인템플릿명"
+                type="text"
+                readonly
+                placeholder="디자인 템플릿을 선택해 주세요"
+              />
+              <input
+                id="디자인템플릿코드"
+                type="text"
+                style="display:none;"
+                readonly
+                placeholder="디자인 템플릿을 선택해 주세요"
+                value="P1"
+              />
+              <button type="button" class="field_btn" id="디자인템플릿찾기버튼">
+                디자인 템플릿 찾기
+              </button>
+            </div>
+            <div style="height: 15px;margin-bottom:10px;"></div>
+            <!-- <div class="design_question">
+						<p class="que">디자인신청비용</p>
+					</div> -->
+            <div class="imgPreview">
+              <div class="preview_box">
+                <span class="thumbnail">
+                  <img
+                    id="디자인템플릿URL"
+                    src="/images/temp/tmp_design3.jpg"
+                    alt=""
+                  />
+                  <!-- 215 * 300 처음 이미지 src가지고 렌더링 -->
+                  <button type="button" class="btn_img_more">크게보기</button>
+                </span>
+              </div>
+              <div class="img_viewer">
+                <img id="디자인템플릿URL미리보기" src="" alt="" />
+                <button class="btn_closing">닫기</button>
+              </div>
+              <!--  이미지 크게보기 -->
+            </div>
+            <div class="data_table">
+              <table>
+                <caption>
+                  디자인 설정
+                </caption>
+                <colgroup>
+                  <col style="width:170px" />
+                  <col style="width:auto" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">디자인 편집 선택</th>
+                    <td>
+                      <select
+                        name="디자인편집의뢰여부"
+                        id="템플릿선택_디자인편집의뢰여부"
+                        data-width="w280px"
+                        class="required"
+                      >
+                      </select>
+                      <button
+                        type="button"
+                        class="field_btn"
+                        id="템플릿선택_요청사항등록버튼"
+                        name="요청사항등록버튼"
+                      >
+                        요청사항등록
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">사이즈 선택</th>
+                    <td>
+                      <select
+                        id="템플릿선택_사이즈코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                        <option value="">전단지 사이즈 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">내지 매수</th>
+                    <td>
+                      <select
+                        id="템플릿선택_내지매수코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                        <option value="">내지 수량 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">컬러/흑백</th>
+                    <td>
+                      <select
+                        id="템플릿선택_칼라흑백코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                        <option value="">색상 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">로고 파일 업로드</th>
+                    <td>
+                      <div class="input_file_set">
+                        <input
+                          id="템플릿선택_로고파일명"
+                          type="text"
+                          readonly="readonly"
+                        />
+                        <label id="템플릿선택_로고파일업로드버튼"
+                          >파일첨부하기</label
+                        >
+                      </div>
+                      <span class="star_noti"
+                        >로고파일이 있을 시에만 업로드해주세요.</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+        <div class="d_cont" id="fileDesign">
+          <form id="디자인직접주문양식">
+            <div class="find_design">
+              <div class="input_file_set">
+                <input id="디자인파일명" type="text" readonly="readonly" />
+                <label id="디자인파일그룹번호">파일첨부하기</label>
+              </div>
+              <span class="star_noti"
+                >확장자 <span>pdf,psd,ai</span>만 가능합니다.</span
+              >
+            </div>
+            <div class="design_question">
+              <p class="que">디자인신청비용</p>
+            </div>
+            <!-- <div class="imgPreview">
+						<div class="preview_box">
+							<span class="thumbnail">
+								<img src="/images/temp/tmp_design3.jpg" alt=""> 215 * 300 처음 이미지 src가지고 렌더링
+								<button type="button" class="btn_img_more">크게보기</button>
+							</span>
+						</div>
+						<div class="img_viewer">
+							<img src="" alt="">
+							<button class="btn_closing">닫기</button>
+						</div> 이미지 크게보기
+					</div> -->
+            <div class="data_table" style="	float: left;width: 100%;">
+              <table>
+                <caption>
+                  디자인 설정
+                </caption>
+                <colgroup>
+                  <col style="width:170px" />
+                  <col style="width:auto" />
+                </colgroup>
+                <tbody>
+                  <!-- <tr>
+									<th scope="row">디자인 파일업로드</th>
+									<td>
+										<button type="button" class="field_btn" id="btnFileUp">디자인 파일 업로드</button>
+									</td>
+								</tr> -->
+                  <tr>
+                    <th scope="row">디자인 편집 선택</th>
+                    <td>
+                      <select
+                        id="디자인직접_디자인편집의뢰여부"
+                        data-width="w280px"
+                        class="required"
+                      >
+                      </select>
+                      <button
+                        type="button"
+                        id="디자인직접_요청사항등록버튼"
+                        name="요청사항등록버튼"
+                        class="field_btn"
+                      >
+                        요청사항등록
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">사이즈 선택</th>
+                    <td>
+                      <select
+                        id="디자인직접_사이즈코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                        <option value="">전단지 사이즈 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">내지 매수</th>
+                    <td>
+                      <select
+                        id="디자인직접_내지매수코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                        <option value="">내지 수량 선택</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">컬러/흑백</th>
+                    <td>
+                      <select
+                        id="디자인직접_칼라흑백코드"
+                        data-width="w280px"
+                        class="required"
+                      >
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">로고 파일 업로드</th>
+                    <td>
+                      <div class="input_file_set">
+                        <input
+                          id="디자인직접_로고파일명"
+                          type="text"
+                          readonly="readonly"
+                        />
+                        <label id="디자인직접_로고파일업로드버튼"
+                          >파일첨부하기</label
+                        >
+                      </div>
+                      <span class="star_noti"
+                        >로고파일이 있을 시에만 업로드해주세요.</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <form id="통합주문양식">
+      <div class="i_cont" id="step3">
+        <h3 class="title_text" data-level="2">03. 발신자 정보(주문자 정보)</h3>
+        <div class="design_question">
+          <div class="input_set" data-type="checkbox">
+            <input type="checkbox" id="주문자정보" />
+            <label for="주문자정보">
+              <span class="text">주문자정보 가져오기</span>
+            </label>
+          </div>
+        </div>
+        <div class="data_table">
+          <table>
+            <caption>
+              발신자 정보 입력
+            </caption>
+            <colgroup>
+              <col style="width:210px" />
+              <col style="width:380px" />
+              <col style="width:210px" />
+              <col style="width:auto" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th scope="row">주문자이름</th>
+                <td>
+                  <input
+                    type="text"
+                    id="주문자명"
+                    data-width="w100per"
+                    class="required"
+                  />
+                </td>
+                <th scope="row">상호(발신자)</th>
+                <td>
+                  <input
+                    type="text"
+                    id="발신자명"
+                    data-width="w100per"
+                    placeholder="15자 이내 (띄어쓰기 포함)"
+                    class="required"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">주소</th>
+                <td colspan="3">
+                  <div class="address_set">
+                    <input
+                      type="number"
+                      id="우편번호"
+                      title="우편번호"
+                      readonly=""
+                      class="post required"
+                    />
+                    <button
+                      type="button"
+                      id="주소찾기버튼"
+                      class="field_btn btn_post"
+                      data-color="gray"
+                    >
+                      주소찾기
+                    </button>
+                    <input
+                      type="text"
+                      id="주소"
+                      title="주소"
+                      class="address required"
+                      readonly=""
+                      placeholder="주소찾기를 클릭해주세요."
+                    />
+                    <input
+                      type="text"
+                      id="주소상세"
+                      class="detail_address required"
+                      title="상세주소"
+                      placeholder="상세주소를 입력해주세요."
+                    />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">연락처</th>
+                <td colspan="3">
+                  <input
+                    type="text"
+                    id="전화번호"
+                    placeholder="'-'를 제외하고 숫자만 입력하세요."
+                    data-width="w350px"
+                    class="required"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">이메일</th>
+                <td colspan="3">
+                  <input
+                    type="text"
+                    id="이메일"
+                    data-width="w350px"
+                    class="required"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="i_cont" id="step4">
+        <h3 class="title_text" data-level="2">04. 봉투 표기 내용</h3>
+        <div class="data_table">
+          <table>
+            <caption>
+              봉투 표기내용 입력
+            </caption>
+            <colgroup>
+              <col style="width:210px;" />
+              <col style="width:auto" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th scope="row">발송인 내용</th>
+                <td>
+                  <div class="input_set" data-type="checkbox">
+                    <input
+                      type="checkbox"
+                      id="발송인표기코드묶음_상호"
+                      checked="checked"
+                      disabled="disabled"
+                    />
+                    <label for="발송인표기코드묶음_상호">
+                      <span class="text">상호</span>
+                    </label>
+                  </div>
+                  <div class="input_set" data-type="checkbox">
+                    <input
+                      type="checkbox"
+                      id="발송인표기코드묶음_주소"
+                      checked="checked"
+                      disabled="disabled"
+                    />
+                    <label for="발송인표기코드묶음_주소">
+                      <span class="text">주소</span>
+                    </label>
+                  </div>
+                  <div class="input_set" data-type="checkbox">
+                    <input type="checkbox" id="발송인표기코드묶음_이름" />
+                    <label for="발송인표기코드묶음_이름">
+                      <span class="text">이름</span>
+                    </label>
+                  </div>
+                  <div class="input_set" data-type="checkbox">
+                    <input type="checkbox" id="발송인표기코드묶음_일반전화" />
+                    <label for="발송인표기코드묶음_일반전화">
+                      <span class="text">일반전화</span>
+                    </label>
+                  </div>
+                  <div class="input_set" data-type="checkbox">
+                    <input type="checkbox" id="발송인표기코드묶음_휴대전화" />
+                    <label for="발송인표기코드묶음_휴대전화">
+                      <span class="text">휴대전화</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">수신인 표기</th>
+                <td>
+                  <div class="input_set" data-type="radio">
+                    <input
+                      type="radio"
+                      id="수신인표기코드묶음_세대주님"
+                      name="수신인표기코드묶음"
+                      value="세대주님"
+                      checked="checked"
+                    />
+                    <label for="수신인표기코드묶음_세대주님">
+                      <span class="text">세대주님</span>
+                    </label>
+                  </div>
+                  <div class="input_set" data-type="radio">
+                    <input
+                      type="radio"
+                      id="수신인표기코드묶음_고객님"
+                      name="수신인표기코드묶음"
+                      value="고객님"
+                    />
+                    <label for="수신인표기코드묶음_고객님">
+                      <span class="text">고객님</span>
+                    </label>
+                  </div>
+                  <!-- <div class="input_set" data-type="radio">
+										<input type="radio" id="수신인표기코드묶음_사장님" name="수신인표기코드묶음" value="사장님">
+										<label
+											for="수신인표기코드묶음_사장님"> <span class="text">사장님</span>
+										</label>
+									</div>
+									<div class="input_set" data-type="radio">
+										<input type="radio" id="수신인표기코드묶음_대표님" name="수신인표기코드묶음" value="대표님">
+										<label
+											for="수신인표기코드묶음_대표님"> <span class="text">대표님</span>
+										</label>
+									</div> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p>※ 주문하신 DM은 디자인 시안 확정 후 5일 이내 발송됩니다.</p>
+      <p>&nbsp;</p>
+      <!-- hidden -->
+      <input type="text" id="특이사항" style="display:none;" />
+      <input type="text" id="발송수량" style="display:none;" />
+      <input type="text" id="디비이용료" style="display:none;" />
+      <input type="text" id="결제금액" style="display:none;" />
+      <!-- hidden -->
+    </form>
+    <div class="btn_list" data-align="center">
+      <button
+        type="submit"
+        id="입력완료버튼"
+        class="out_field_btn"
+        id="입력완료버튼"
+      >
+        결제화면으로 이동
+      </button>
+    </div>
+  </div>
+  <!-- //step 1부터 4 입력 폼-->
+  <!-- 팝업차단 안내 -->
+  <div id="popup" style="display:none">
+    <div style="width:500px; font-size:20px; padding:20px">
+      주문시 팝업차단이 되어 있으면 주문이 원활하지 않습니다.
+      <br /><br />팝업차단이 되어있는지 주문전 확인하여 주십시오.<br /><br />(도구
+      - 팝업차단 에서 팝업차단 끄기)
+    </div>
+    <div
+      class="input_set"
+      data-type="checkbox"
+      style="font-size:20px; padding:20px"
+    >
+      <input type="checkbox" id="팝업알림체크" checked="checked" />
+      <label for="팝업알림체크">
+        <span class="text">오늘 다시 열리지 않음</span>
+      </label>
+    </div>
+  </div>
+</section>
+<!-- sub layout -->
+
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script>
+<script>
+  var 주문자정보입력 = false ;
+  N('#맞춤홍보DM주문하기').cont({
+  	name : '맞춤홍보DM주문하기',
+  	sample : {
+  			designEdit : [{
+  				"코드명" : "편집요청",
+  		        "코드" : "Y"
+  			}, {
+  				"코드명" : "비요청",
+  		        "코드" : "N"
+  			}],
+  			pageSize : [
+                {
+                코드명: "접착형 192*260",
+                코드: "B01",
+                },
+                {
+                코드명: "접착형 A4(210*297)",
+                코드: "B02",
+                },
+                {
+                코드명: "봉투형 A4",
+                코드: "E01",
+                },
+                {
+                코드명: "봉투형 A3",
+                코드: "E02",
+                },
+                {
+                코드명: "봉투형 A2",
+                코드: "E03",
+                },
+            ],
+            pageCountSingle: [
+                {
+                코드명: "1장",
+                코드: "01",
+                },
+            ],
+            pageCountDouble: [
+                {
+                코드명: "1장",
+                코드: "01",
+                },
+                {
+                코드명: "2장",
+                코드: "02",
+                },
+            ],
+  			pageCountA4 : [{
+  				"코드명" : "1장",
+  		        "코드" : "1"
+  			},{
+  				"코드명" : "2장",
+  		        "코드" : "2"
+  			},{
+  				"코드명" : "3장",
+  		        "코드" : "3"
+  			},{
+  				"코드명" : "4장",
+  		        "코드" : "4"
+  			},{
+  				"코드명" : "5장",
+  		        "코드" : "5"
+  			},{
+  				"코드명" : "6장",
+  		        "코드" : "6"
+  			}],
+  			pageCountA3 : [{
+  				"코드명" : "1장",
+  		        "코드" : "1"
+  			},{
+  				"코드명" : "2장",
+  		        "코드" : "2"
+  			}],
+  			monoType : [{
+  				"코드명" : "컬러",
+  		        "코드" : "C"
+  			}],
+  			paperKind : [{
+  				"코드명" : "백아트",
+  		        "코드" : "B"
+  			}]
+  	},
+  	comp : {
+  		템플릿선택주문양식 : {},
+  		디자인직접주문양식 : {},
+  		통합주문양식 : {},
+  		최종주문양식 : {},
+  		디자인파일 : {},
+  		템플릿선택로고파일 : {},
+  		디자인직접로고파일 : {}
+  	}
+  	, data: {
+  		발송대상들: [],
+  		발송대상들배달국: []
+  	}
+  	, eventConfig : {
+  		'#saveNpurchase:click' : function(e, el, C){
+  			e.preventDefault();
+  		},
+  		'ebus:맞춤홍보DM주문하기.COMP.초기화' : function(o,C) {
+  			C.comp.템플릿선택주문양식 = N([]).form({
+  				  context: C.N('#템플릿선택주문양식')
+  				, validate: false
+  			}).bind().add();
+
+  			C.comp.디자인직접주문양식 = N([]).form({
+  				  context: C.N('#디자인직접주문양식')
+  				, validate: false
+  			}).bind().add();
+
+  			C.comp.통합주문양식 = N([]).form({
+  				  context: C.N('#통합주문양식')
+  				, validate: false
+  			}).bind().add();
+
+
+  			C.comp.최종주문양식 = N([]).form().bind().add();
+  		},
+  		'ebus:맞춤홍보DM주문하기.저장' : function(o, C){
+
+  		},
+  		'ebus:팝업차단알림' : function(o, C){
+  			//alert(document.cookie);
+  			if(getCookie("popchk1") == 'Y') return ;
+
+  			    N("#popup").popup({
+  				title : '팝업차단 해제안내',
+  				button : true,
+  				onOk : function() {
+  					if(N("#팝업알림체크").is(":checked")) {
+  						var d = new Date();
+  					    d.setDate(d.getDate() + 1);
+  					    var expires = "expires="+ d.toUTCString();
+  					    document.cookie = "popchk1=Y;" + expires + "; path=/";
+  					}
+
+  				}
+  			    }).open();
+  		},
+  		'ebus:맞춤홍보DM주문하기.셀렉트박스.디자인편집선택.조회' : function(o,C){
+  			N("#템플릿선택_디자인편집의뢰여부 option[value!=''],#디자인직접_디자인편집의뢰여부 option[value!='']").each(function(){
+  				N(this).remove();
+  			});
+  			// Select Box Element Settings
+  			N(C.sample.designEdit).select("#템플릿선택_디자인편집의뢰여부").bind();
+  			N(C.sample.designEdit).select("#디자인직접_디자인편집의뢰여부").bind();
+  		},
+  		'ebus:맞춤홍보DM주문하기.셀렉트박스.사이즈선택.조회' : function(o, C) {
+  			N("#템플릿선택_사이즈코드 option[value!=''],#디자인직접_사이즈코드 option[value!='']").each(function(){
+  				N(this).remove();
+  			});
+  			N(C.sample.pageSize).select("#템플릿선택_사이즈코드").bind();
+  			N(C.sample.pageSize).select("#디자인직접_사이즈코드").bind();
+
+  		},
+  		'ebus:맞춤홍보DM주문하기.셀렉트박스.내지매수.조회' : function(o, C) {
+  			N("#템플릿선택_내지매수코드 option[value!=''],#디자인직접_내지매수코드 option[value!='']").each(function(){
+  				N(this).remove();
+              });
+
+            const 템플릿선택_사이즈코드 = N('#템플릿선택_사이즈코드').val();
+            if (
+                템플릿선택_사이즈코드 == "B01" ||
+                템플릿선택_사이즈코드 == "B02" ||
+                템플릿선택_사이즈코드 == "E03"
+            ) {
+            N(C.sample.pageCountSingle)
+                .select("#템플릿선택_내지매수코드")
+                .bind();
+            } else {
+            N(C.sample.pageCountDouble)
+                .select("#템플릿선택_내지매수코드")
+                .bind();
+            }
+            const 디자인직접_사이즈코드 = N('#디자인직접_사이즈코드').val();
+            if (
+                디자인직접_사이즈코드 == "B01" ||
+                디자인직접_사이즈코드 == "B02" ||
+                디자인직접_사이즈코드 == "E03"
+            ) {
+            N(C.sample.pageCountSingle)
+                .select("#디자인직접_내지매수코드")
+                .bind();
+            } else {
+            N(C.sample.pageCountDouble)
+                .select("#디자인직접_내지매수코드")
+                .bind();
+            }
+
+  		},
+  		'ebus:맞춤홍보DM주문하기.셀렉트박스.컬러흑백.조회' : function(o, C) {
+  			N("#템플릿선택_칼라흑백코드 option[value!=''],#디자인직접_칼라흑백코드 option[value!='']").each(function(){
+  				N(this).remove();
+  			});
+  			N(C.sample.monoType).select("#템플릿선택_칼라흑백코드").bind();
+  			N(C.sample.monoType).select("#디자인직접_칼라흑백코드").bind();
+  		},
+  		'ebus:맞춤홍보DM주문하기.요금계산하기' : function(o, C){
+            let 발송수량 = 0;
+            let 색상 = ""
+            let 사이즈 = "";
+            let 전단지장수 = "";
+            let 디자인제작 = "";
+
+            let 용지비 = 0,
+                봉투비 = 0,
+                봉입비 = 0,
+                주소출력비 = 0,
+                추가비 = 0;
+
+            let 총우편료 = 0;
+
+            let 계산에러 = false;
+
+  			var 디자인템플릿편집의뢰선택 = N("#customDesign").hasClass('d_cont tab_content_active__ visible__');
+  			if(디자인템플릿편집의뢰선택){ // 디자인템플릿/편집의뢰
+  				색상 = N("#템플릿선택_칼라흑백코드").val();
+  				사이즈 = N("#템플릿선택_사이즈코드").val();
+  				전단지장수 = N("#템플릿선택_내지매수코드").val();
+  				디자인제작 = N("#템플릿선택_디자인편집의뢰여부").val();
+  			} else {// 디자인파일등록
+  				색상 = N("#디자인직접_칼라흑백코드").val();
+  				사이즈 = N("#디자인직접_사이즈코드").val();
+  				전단지장수 = N("#디자인직접_내지매수코드").val();
+  				디자인제작 = N("#디자인직접_디자인편집의뢰여부").val();
+  			}
+
+            for(var key in C.data.발송대상들배달국) {
+                발송수량 = C.data.발송대상들배달국[key];
+
+                let 우편료 = 0;
+                if (사이즈 == "B01") {
+                    우편료 = 175;
+                } else if (사이즈 == "B02") {
+                    우편료 = 190;
+                } else if (사이즈 == "E01") {
+                    우편료 = 190;
+                } else if (사이즈 == "E02") {
+                    if (전단지장수 == "01") {
+                        우편료 = 190;
+                    } else if (전단지장수 == "02") {
+                        우편료 = 200;
+                    } else {
+                        계산에러 = true;
+                    }
+                } else if (사이즈 == "E03") {
+                    우편료 = 200;
+                } else {
+                    계산에러 = true;
+                }
+
+                if(발송수량 < 1000) {
+                    우편료 = 우편료 * 2;
+                }
+                총우편료 += 우편료 * 발송수량;
+            }
+            발송수량 = C.N('#발송수량').val();
+
+             // 용지비
+            if (사이즈 == "B01" || 사이즈 == "B02" || 사이즈 == "E01") {
+                용지비 = 35;
+            } else if (사이즈 == "E02") {
+                용지비 = 72;
+            } else if (사이즈 == "E03") {
+                용지비 = 154;
+            } else {
+                계산에러 = true;
+            }
+
+            // 봉투비
+            if (사이즈 == "E01" || 사이즈 == "E02" || 사이즈 == "E03") {
+                봉투비 = 18;
+            }
+
+            // 봉입비
+            if (사이즈 == "B01" || 사이즈 == "B02") {
+                봉입비 = 27;
+            } else if (사이즈 == "E01") {
+                봉입비 = 18;
+            } else if (사이즈 == "E02") {
+                봉입비 = 27;
+            } else if (사이즈 == "E03") {
+                봉입비 = 36;
+            } else {
+                계산에러 = true;
+            }
+
+            주소출력비 = 10;
+
+            if (전단지장수 == "02") {
+                if (사이즈 == "E01") {
+                    추가비 = 45;
+                } else if (사이즈 == "E02") {
+                    추가비 = 91;
+                }
+            }
+
+            let 제작비 = 용지비 + 봉투비 + 봉입비 + 주소출력비 + 추가비;
+            console.log("용지비 : " + 용지비);
+            console.log("봉투비 : " + 봉투비);
+            console.log("봉입비 : " + 봉입비);
+            console.log("주소출력비 : " + 주소출력비);
+            console.log("추가비 : " + 추가비);
+            let 총제작비 = 제작비 * 발송수량;
+
+            console.log("총제작비 : " + 총제작비);
+
+            let 총디자인비 = 0;
+            if (디자인제작 == "Y") {
+                if (사이즈 == "B01" || 사이즈 == "B02" || 사이즈 == "E01") {
+                    총디자인비 = 20000 * Number(전단지장수);
+                } else if (사이즈 == "E02") {
+                    총디자인비 = 40000 * Number(전단지장수);
+                } else if (사이즈 == "E03") {
+                    총디자인비 = 80000 * Number(전단지장수);
+                } else {
+                    계산에러 = true;
+                }
+            }
+
+            console.log("총디자인비 : " + 총디자인비);
+
+            let DB이용료 = 0;
+            let 총DB이용료 = DB이용료 * 발송수량;
+
+            console.log("총DB이용료 : " + 총DB이용료);
+
+            console.log("총우편료 : " + 총우편료);
+
+            console.log("계산에러 : " + 계산에러);
+
+            if (!계산에러) {
+                const 공급가액 = 총제작비 + 총디자인비 + 총DB이용료 + 총우편료;
+                const 부가세 = 공급가액 * 0.1;
+                let 공급대가 = 공급가액 + 부가세;
+                공급대가 = Math.floor(공급대가 / 10) * 10; // 원단위절사
+                console.log("공급가액 : " + 공급가액);
+                console.log("부가세 : " + 부가세);
+                console.log("공급대가 : " + 공급대가);
+
+                C.comp.통합주문양식.val('주소목록수', 발송수량);
+                C.comp.통합주문양식.val('제작비', 총제작비);
+                C.comp.통합주문양식.val('우편료', 총우편료);
+                C.comp.통합주문양식.val('봉입비', 봉입비);
+                C.comp.통합주문양식.val('디자인비', 총디자인비);
+                C.comp.통합주문양식.val('디비이용료', 총DB이용료);
+                C.comp.통합주문양식.val('결제금액', 공급대가);
+            }
+  		},
+  		'#템플릿선택_사이즈코드,#디자인직접_사이즈코드:change' : function(e, el, C){
+  			C.event("맞춤홍보DM주문하기.셀렉트박스.내지매수.조회");
+  		},
+
+  		'#디자인파일업로드버튼:click' : function(e, el, C){
+  			N().popup({
+  				url : '/design/leafletFileUpload.html',
+  				title : '전단지 파일 올리기',
+  				message : {
+  					"ko_KR" : {
+  						"confirm" : "저장"
+  					}
+  				},
+  				"confirm" : false
+  			}).open();
+
+  		},
+  		'#디자인템플릿찾기버튼:click' : function(e, el, C){
+  			N().popup({
+  				  url: '/p/147.do'
+  				, title : '디자인 템플릿 선택하기'
+  				, opener: C
+  				, button: false
+  				, onOpen: 'setTemplateParam'
+  				, onClose: function(o){
+  					N('#디자인템플릿코드').val(o.템플릿아이디);
+  					C.comp.통합주문양식.val('디자인템플릿코드', o.템플릿아이디);
+  					N('#디자인템플릿명').val(o.템플릿명);
+  					C.comp.통합주문양식.val('디자인템플릿명', o.템플릿명);
+  					N('#디자인템플릿URL').attr('src',o.템플릿URL);
+  					N('#디자인템플릿URL미리보기').attr('src',o.템플릿URL미리보기);
+
+  				}
+  				, top : 50
+  			}).open();
+
+  		},
+  		'[name=요청사항등록버튼]:click' : function(e, el, C) {
+
+  			N().popup({
+  				  url: '/p/146.do'
+  				, title : '요청사항 등록'
+  				, opener: C
+  				, button: false
+  				, onOpen: 'setRequestParam'
+  				, onClose: function(o){
+  					//N('#특이사항').val(o);
+  					//C.comp.통합주문양식.data('특이사항', o);
+  					C.comp.통합주문양식.options.data[0].특이사항 = o;
+  				}
+  			}).open(C.comp.통합주문양식.options.data[0].특이사항);
+
+  		},
+  		'#주소찾기버튼:click' : function(e, el, C){
+  			daum.postcode.load(function(){
+  				new daum.Postcode({
+  					oncomplete: function(data) {
+  						N('#우편번호').val(data.zonecode);
+  						C.comp.통합주문양식.val('우편번호', data.zonecode);
+  						N('#주소').val(data.roadAddress);
+  						C.comp.통합주문양식.val('주소', data.roadAddress);
+  						N('#주소상세').focus();
+  					}
+  				}).open();
+  			});
+
+  		},
+  		'#입력완료버튼:click' : function(e, el, C){
+
+  			/* 세션체크 */
+  			<#if !세션?hasContent>
+  			var url = '/p/96.do';
+  			C.event('hash', { url: url });
+  			return false;
+  			</#if>
+
+  			N(".loading_spinner").show();
+
+  			$.when.apply($, C.comp.업로드상태).done(function(){
+  				C.저장전파일업로드완료();
+  			});
+
+  			//C.event('일반DM주문하기.COMP.초기화');
+
+
+  		},
+  		"#주문자정보:change" : function (e, el, C) {
+
+  			/* 세션체크 */
+  			<#if !세션?hasContent>
+  			alert('로그인 정보가 없습니다.');
+  			return false;
+  			</#if>
+
+
+  			if(주문자정보입력) {
+  				N('#주문자명').val('');
+  				N('#발신자명').val('');
+  				N('#전화번호').val('');
+  				N('#우편번호').val('');
+  				N('#주소').val('');
+  				N('#주소상세').val('');
+  				N('#연락처').val('');
+  				N('#이메일').val('');
+  				주문자정보입력 = false ;
+  			} else {
+  				N().comm("회원가입/조회.do").submit(function(o){
+  					if(o.rc) {
+  						//alert(o.data.전화번호);
+  						N('#주문자명').val(o.data.사용자명);
+  						N('#발신자명').val(o.data.사용자명);
+  						N('#전화번호').val(o.data.전화번호);
+  						N('#우편번호').val(o.data.우편번호);
+  						N('#주소').val(o.data.주소);
+  						N('#주소상세').val(o.data.주소상세);
+  						N('#연락처').val(o.data.전화번호);
+  						if( o.data.이메일아이디 != null ) {
+  							N('#이메일').val(o.data.이메일아이디 +"@" + o.data.이메일도메인);
+  						}
+  						주문자정보입력 = true ;
+  					} else {
+  						//alert(o.rm);
+  					}
+  				});
+  			};
+
+  		},
+  		"#템플릿선택_디자인편집의뢰여부:change" : function (e, el, C) {
+  			if(N("#템플릿선택_디자인편집의뢰여부").val() == 'Y') {
+  				//N.log("템플릿선택_디자인편집의뢰여부 : " + N("#템플릿선택_디자인편집의뢰여부").val());
+  				N('#템플릿선택_요청사항등록버튼').show();
+  			} else {
+  				//N.log("템플릿선택_디자인편집의뢰여부 : " + N("#템플릿선택_디자인편집의뢰여부").val());
+  				N('#템플릿선택_요청사항등록버튼').hide();
+  			}
+  		},
+  		"#디자인직접_디자인편집의뢰여부:change" : function (e, el, C) {
+  			if(N("#디자인직접_디자인편집의뢰여부").val() == 'Y') {
+  				N('#디자인직접_요청사항등록버튼').show();
+  			} else {
+  				N('#디자인직접_요청사항등록버튼').hide();
+  			}
+  		},
+  		'#발송타겟설정버튼:click': function(e, el, C){
+
+  			/* 세션체크 */
+  			<#if !세션?hasContent>
+  			var url = '/p/96.do';
+  			C.event('hash', { url: url });
+  			return false;
+  			</#if>
+
+  			C.발송타겟설정팝업();
+  		},
+  		"[name=수신인표기코드묶음]:click" : function (e, el, C) {
+  			N(el).attr("checked", true);
+  			N("[name=수신인표기코드묶음]").not(el).attr("checked", false);
+
+  		}
+  	},
+  	발송타겟설정팝업: function(구분){
+  		var C = this;
+  		N().popup({
+  			  url: 구분 == '업종' ? '/p/153.do' : '/p/152.do'
+  			, draggable: false
+  			, button: false
+  			, width: 1600
+  			, opener: C
+  			, onClose: function(팝업리턴값){
+  				if(!팝업리턴값)return;
+
+  				N.log(typeof 팝업리턴값 == 'string');
+
+  				if(typeof 팝업리턴값 == 'string'){
+  					var 구분 = 팝업리턴값;
+  					C.발송타겟설정팝업(구분);
+  					return;
+  				}
+  				C.data.발송대상들 = 팝업리턴값.발송대상;
+  				C.data.발송대상들배달국 = 팝업리턴값.배달국;
+
+  				C.N('#발송타겟선정결과건수').text(N.formatter.commas(C.data.발송대상들.reduce(function(total, o){
+  					return total + o.cnt;
+  				}, 0)));
+  				C.N('#발송수량').val(C.data.발송대상들.reduce(function(total, o){return total + o.cnt;}, 0));
+  			}
+  		}).open(C.data.발송대상들);
+  	},
+  	저장전파일업로드완료: function(){
+  		var C = this;
+  		setTimeout(
+  			function afterTimeOut1(){
+  				var 디자인템플릿편집의뢰선택 = N("#customDesign").hasClass('tab_content_active__ visible__');
+  				var els = null;
+  				var 포커스ed = false;
+
+  				// VALIDATION START
+  				if(디자인템플릿편집의뢰선택){
+  					els = C.comp.템플릿선택주문양식.context('.required');
+  				} else {
+  					els = C.comp.디자인직접주문양식.context('.required');
+
+  				}
+  				els.removeClass('validate_false__').each(function(i, el){
+  					if(!N.string.trimToNull($(el).val())){
+  						$(el).addClass('validate_false__');
+  						if(!포커스ed){
+  							//N.log(N(el));
+  							$(el).focus();
+  							포커스ed = true;
+  						}
+  					}
+  				});
+
+  				if(C.data.발송대상들.length == 0){
+  					var _msg = "발송대상을 선택해주세요..";
+  					N(window).alert({
+  						msg : _msg,
+  						html : true,
+  						}).show();
+  					포커스ed = true;
+  					N(".loading_spinner").hide();
+  					C.N("#발송타겟설정버튼").focus();
+  					return false;
+  				}
+
+  				var els통합 = C.comp.통합주문양식.context('.required');
+  				els통합.removeClass('validate_false__').each(function(i, el){
+  					if(!N.string.trimToNull($(el).val())){
+  						$(el).addClass('validate_false__');
+  						if(!포커스ed){
+  							$(el).focus();
+  							포커스ed = true;
+  						}
+
+  					}
+  				});
+
+  				if(포커스ed) {
+  					var _msg = "필수 입력값 입니다.";
+  					N(window).alert({
+  						msg : _msg,
+  						html : true,
+  						}).show();
+  					포커스ed = true;
+  					N(".loading_spinner").hide();
+  					return false;
+  				}
+
+  				var 발송인표기코드묶음존재여부 = false;
+  				for(var x in C.comp.통합주문양식.options.data[0]) {
+  					if(/발송인표기코드묶음_/g.test(x)) {
+  						if(C.comp.통합주문양식.options.data[0][x] == 'Y') {
+  							발송인표기코드묶음존재여부 = true;
+  						}
+  					}
+  				}
+  				if(!발송인표기코드묶음존재여부){
+  					N('#발송인표기코드묶음_상호').focus();
+  					var _msg = "발송인 내용을 1개이상 선택해주세요.";
+  					N(window).alert({
+  						msg : _msg,
+  						html : true,
+  						}).show();
+  					포커스ed = true;
+  					N(".loading_spinner").hide();
+  					return false;
+  				}
+
+  				if(els.filter('.validate_false__').length > 0 || els통합.filter('.validate_false__').length >0 || !발송인표기코드묶음존재여부){
+  					N(".loading_spinner").hide();
+  					return false;
+  				}
+  				// VALIDATION END
+
+  				C.event('맞춤홍보DM주문하기.요금계산하기');
+
+  				setTimeout(
+  					function afterTimeOut2(){
+  						N(".loading_spinner").show();
+  						// READY TO SUBMIT
+  						var 임시제이슨 = null;
+  						if(디자인템플릿편집의뢰선택) {
+  							임시제이슨 = C.comp.템플릿선택주문양식.options.data[0];
+  							for(var x in 임시제이슨) {
+  								C.comp.최종주문양식.val(x.replace(/템플릿선택_/g,''), 임시제이슨[x]);
+  							}
+  						} else { // 디자인파일등록
+  							임시제이슨 = C.comp.디자인직접주문양식.options.data[0];
+  							for(var x in 임시제이슨) {
+  								C.comp.최종주문양식.val(x.replace(/디자인직접_/g,''), 임시제이슨[x]);
+  							}
+  						}
+
+  						임시제이슨 = C.comp.통합주문양식.options.data[0];
+
+  						C.comp.최종주문양식.val('디자인편집의뢰여부', 디자인템플릿편집의뢰선택 ? N("#템플릿선택_디자인편집의뢰여부").val() : N("#디자인직접_디자인편집의뢰여부").val());
+  						for(var x in 임시제이슨) {
+  							if(/발송인표기코드묶음_/g.test(x)) {
+  								C.comp.최종주문양식.val('발송인표기코드묶음', 임시제이슨[x] == 'Y' ? ( !C.comp.최종주문양식.val('발송인표기코드묶음') ? x.replace(/발송인표기코드묶음_/g,'') : C.comp.최종주문양식.val('발송인표기코드묶음') + '|' + x.replace(/발송인표기코드묶음_/g,'') ) : C.comp.최종주문양식.val('발송인표기코드묶음'))
+  								//N.log(C.comp.최종주문양식.val('발송인표기코드묶음'));
+  							} else if(/수신인표기코드묶음_/g.test(x)) {
+  								C.comp.최종주문양식.val('수신인표기코드묶음', N("[name=수신인표기코드묶음]:checked").val());
+  							} else {
+  								C.comp.최종주문양식.val(x, 임시제이슨[x]);
+  							}
+  						}
+
+  						// 파일그룹번호 바인딩
+  						if(디자인템플릿편집의뢰선택) { // 디자인템플릿/편집의뢰 선택
+  							if(C.comp.디자인파일.data('no')){
+  								C.comp.최종주문양식.val('디자인파일그룹번호', 0);
+  							}
+
+  							if(C.comp.템플릿선택로고파일.data('no')) {
+  								C.comp.최종주문양식.val('로고파일그룹번호', C.comp.템플릿선택로고파일.data('no').파일그룹번호);
+  							}
+  						} else { // 디자인파일등록 선택
+  							C.comp.최종주문양식.val('디자인템플릿코드', null);
+  							C.comp.최종주문양식.val('디자인템플릿명', null);
+
+  							if(C.comp.디자인파일.data('no')){
+  								C.comp.최종주문양식.val('디자인파일그룹번호', C.comp.디자인파일.data('no').파일그룹번호);
+  							}
+
+  							if(C.comp.디자인직접로고파일.data('no')) {
+  								C.comp.최종주문양식.val('로고파일그룹번호', C.comp.디자인직접로고파일.data('no').파일그룹번호);
+  							}
+  						}
+
+  						for(var i = 0; i < C.data.발송대상들.length; i++) {
+  							C.data.발송대상들[i].rowStatus = "insert";
+  						}
+
+  						C.comp.최종주문양식.val('발송타겟', C.data.발송대상들);
+
+  						C.comp.최종주문양식.val('주문자명', N("#주문자명").val());
+  						C.comp.최종주문양식.val('발신자명', N("#발신자명").val());
+  						C.comp.최종주문양식.val('우편번호', N("#우편번호").val());
+  						C.comp.최종주문양식.val('주소', N("#주소").val());
+  						C.comp.최종주문양식.val('주소상세', N("#주소상세").val());
+  						C.comp.최종주문양식.val('전화번호', N("#전화번호").val());
+  						C.comp.최종주문양식.val('이메일', N("#이메일").val());
+
+  						N(C.comp.최종주문양식.options.data[0]).comm('/맞춤DM주문/저장.do').submit(function(o){
+  							N(".loading_spinner").hide();
+  							if(o.rm == 'ok'){
+  								var url = '/맞춤DM주문/'+o.data.맞춤DM주문아이디+'/주문조회.do';
+  								//N.log(url);
+  								C.event('hash', { url: url });
+  							} else {
+  								var _msg = o.rm;
+  								N(window).alert({
+  								msg : _msg,
+  								html : true,
+  								}).show();
+  								//alert(o.rm);
+  							}
+  						});
+
+  					}
+  					, 300
+  				);
+  			}
+  			, 300
+  		);
+  	},
+  	init : function(view, request){
+  		var C = this;
+
+  		C.comp.디자인파일 = C.upload('#디자인파일그룹번호', '#디자인파일명' ,null);
+  		C.comp.템플릿선택로고파일 = C.upload('#템플릿선택_로고파일업로드버튼', '#템플릿선택_로고파일명' ,null);
+  		C.comp.디자인직접로고파일 = C.upload('#디자인직접_로고파일업로드버튼', '#디자인직접_로고파일명' ,null);
+
+  		C.comp.업로드상태 = [
+  			C.comp.디자인파일.data('현재업로드')
+  			, C.comp.템플릿선택로고파일.data('현재업로드')
+  			, C.comp.디자인직접로고파일.data('현재업로드')
+  		];
+
+  		$(".input_file_set").length && input_file_set.init();
+
+  		N('#orderTab').tab();
+  		$(".imgPreview").length && imgViewer.init();
+  		$(".input_file_set").length && input_file_set.init();
+
+  		//부르기 전에 N라이브러리관련 메소드 먼저 호출해야함 ㅜ
+  		dmFlow.isValid = [false, false, false, false]; // 초기 상태값
+  		setTimeout(function(){
+  			dmFlow.init ();
+  		},200)
+
+  		C.event('맞춤홍보DM주문하기.셀렉트박스.디자인편집선택.조회');
+  		C.event('맞춤홍보DM주문하기.셀렉트박스.사이즈선택.조회');
+  		C.event('맞춤홍보DM주문하기.셀렉트박스.내지매수.조회');
+  		C.event('맞춤홍보DM주문하기.셀렉트박스.컬러흑백.조회');
+
+  		C.comp.템플릿선택주문양식 = N([]).form({
+  			  context: C.N('#템플릿선택주문양식')
+  			, validate: false
+  		}).bind().add();
+
+  		C.comp.디자인직접주문양식 = N([]).form({
+  			  context: C.N('#디자인직접주문양식')
+  			, validate: false
+  		}).bind().add();
+
+  		C.comp.통합주문양식 = N([]).form({
+  			  context: C.N('#통합주문양식')
+  			, validate: false
+  		}).bind().add();
+
+  		C.comp.최종주문양식 = N([]).form().bind().add();
+
+  		var 파라미터 = request.attr('param');
+  		if(파라미터 != null){
+  			if(파라미터.템플릿번호 != null) {
+  				N('#디자인템플릿코드').val(파라미터.템플릿번호);
+  				C.comp.통합주문양식.val('디자인템플릿코드', 파라미터.템플릿번호);
+  				N('#디자인템플릿명').val(파라미터.설명);
+  				C.comp.통합주문양식.val('디자인템플릿명', 파라미터.설명);
+  				N('#디자인템플릿URL').attr('src',"/images/design/s/s_"+파라미터.파일명);
+  				N('#디자인템플릿URL미리보기').attr('src',"/images/design/"+파라미터.파일명);
+  			}
+  			if(파라미터.타겟설정하기 != null) {
+  				setTimeout(function(){
+  					N("button#발송타겟설정버튼").click();
+  				},300)
+
+  			}
+  		} else {
+  			N('#디자인템플릿코드').val('');
+  			C.comp.통합주문양식.val('디자인템플릿코드', '');
+  			N('#디자인템플릿명').val('템플릿 외 디자인');
+  			C.comp.통합주문양식.val('디자인템플릿명', '템플릿 외 디자인');
+  			N('#디자인템플릿URL').attr('src',"/images/contents/df_custom.gif");
+  			N('#디자인템플릿URL미리보기').attr('src',"/images/contents/df_custom.gif");
+  		}
+
+  		//밸리데이션 체크 후 dmFlow.isValid 형태로 업데이트 해주세요 'ㅅ'...
+  		/* dmFlow.isValid = [true, true, true, true] */
+
+
+  		C.event('팝업차단알림');
+  	}
+
+  });
+  //쿠키체크
+  function getCookie(cname)
+  {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i=0; i<ca.length; i++)
+      {
+          var c = ca[i];
+          while(c.charAt(0) == ' ')
+          {
+              c = c.substring(1);
+          }
+          if(c.indexOf(name) == 0)
+          {
+              return c.substring(name.length, c.length);
+          }
+      }
+      return "";
+  }
+</script>

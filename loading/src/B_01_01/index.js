@@ -43,35 +43,37 @@ const callAPI = () => {
   if (fileName) {
     const xhr = new XMLHttpRequest();
     const fetchURL = UPDATE_READ_URL + "/" + fileName;
-    xhr.open("GET", fetchURL, true);
-    xhr.onload = function() {
-      fetch(
-        DECR_URL +
-          "?filepath=" +
-          "/" +
-          "180006" +
-          "/" +
-          tplCode +
-          "&filename=" +
-          fileName,
-        {
-          method: "get",
-          mode: "cors"
-        }
-      )
-        .then(response => {
-          if (response.status == 200) {
+
+    // Decryption
+    fetch(
+      DECR_URL +
+        "?filepath=" +
+        "/" +
+        "test" +
+        "/" +
+        "180006" +
+        "/" +
+        tplCode +
+        "&filename=" +
+        fileName
+    )
+      .then((response) => {
+        if (response.status == 200) {
+          // Logging
+          xhr.open("GET", fetchURL, true);
+          xhr.onload = function() {
+            // Viewer
             location.href = passURL;
-          } else {
-            alert("can't decrypt file.");
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-        });
-    };
-    xhr.send(null);
+          };
+          xhr.send(null);
+        } else {
+          alert("can't decrypt file.");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   } else {
     alert("can't file founded.");
   }

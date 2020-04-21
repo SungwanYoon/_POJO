@@ -1,8 +1,12 @@
-const UPDATE_READ_URL = "https://mbillpost.co.kr/updateReadStatus";
-const ACNS_D1_URL = "https://d1.mbillpost.co.kr";
-const ACNS_D2_URL = "https://d2.mbillpost.co.kr";
+const coinList = document.querySelector("#jsCoin");
 
-const DECR_URL = "https://mbillpost.co.kr/desc";
+const UPDATE_READ_URL = "https://mbillpost.co.kr/updateReadStatus";
+//const ACNS_D1_URL = "https://d1.mbillpost.co.kr?contentid=";
+//const ACNS_D2_URL = "https://d2.mbillpost.co.kr?contentid=";
+//const ACNS_D1_URL = "https://d1.mbillpost.co.kr";
+//const ACNS_D2_URL = "https://d2.mbillpost.co.kr";
+
+const CN_COIN_ROW = "coinRow";
 
 let timeoutId;
 
@@ -15,6 +19,20 @@ const getPathParam = (num, url) => {
   return args[num];
 };
 
+const api = {
+  fetchAPI: () =>
+    fetch(UPDATE_READ_URL, {
+      method: "get",
+      mode: "cors",
+    }),
+};
+
+const invokeAPI = () => {
+  return new Promise((resolve, reject) => {
+    resolve(api.fetchAPI());
+  });
+};
+
 const callAPI = () => {
   const cmpCode = getPathParam("1");
   const authType = getPathParam("2");
@@ -25,10 +43,15 @@ const callAPI = () => {
 
   // Routing Logics
   let passURL = "";
-  passURL = "https://d" + svrCode + ".mbillpost.co.kr";
-
+  //  if (svrCode == "1") {
+  //    passURL = ACNS_D1_URL;
+  //  } else {
+  //    passURL = ACNS_D2_URL;
+  //  }
   passURL =
-    passURL +
+    "https://d" +
+    svrCode +
+    ".mbillpost.co.kr" +
     "/" +
     cmpCode +
     "/" +
@@ -39,41 +62,18 @@ const callAPI = () => {
     tplCode +
     "/" +
     fileName;
-
+  //alert(passURL);
   if (fileName) {
     const xhr = new XMLHttpRequest();
     const fetchURL = UPDATE_READ_URL + "/" + fileName;
+
     xhr.open("GET", fetchURL, true);
     xhr.onload = function() {
-      fetch(
-        DECR_URL +
-          "?filepath=" +
-          "/" +
-          "180006" +
-          "/" +
-          tplCode +
-          "&filename=" +
-          fileName,
-        {
-          method: "get",
-          mode: "cors"
-        }
-      )
-        .then(response => {
-          if (response.status == 200) {
-            location.href = passURL;
-          } else {
-            alert("can't decrypt file.");
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-        });
+      location.href = passURL;
     };
     xhr.send(null);
   } else {
-    alert("can't file founded.");
+    alert("File name missing.");
   }
 };
 
