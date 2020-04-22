@@ -22,11 +22,11 @@ button {
   font-size: 30px;
   font-weight: 600;
   border-radius: 10px;
-  background-color: #487eb0;
+  background-color: #aa4465;
   color: #f5f6fa;
 }
 button:hover {
-  background-color: #40739e;
+  background-color: #753046;
 }
 button:focus {
   outline: none;
@@ -129,7 +129,7 @@ button:focus {
   opacity: 0.9;
   color: #2f3640;
   background: #fff;
-  border: solid 2px #40739e;
+  border: solid 2px #aa4465;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
