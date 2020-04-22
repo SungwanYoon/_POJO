@@ -1,0 +1,229 @@
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.box {
+  width: 300px;
+  height: 200px;
+  background-color: #2d3436;
+  /*background-color: #ddfff7;*/
+  position: relative;
+  box-shadow: 10px 10px 42px 0 rgba(0, 0, 0, 0.75);
+}
+.box:after,
+.box:before {
+  mix-blend-mode: multiply;
+  filter: none;
+  z-index: -1;
+  content: "";
+  width: calc(100% + (50px * 2));
+  height: calc(100% + (50px * 2));
+  position: absolute;
+  display: block;
+  animation: border 10s ease-in-out infinite;
+  transform: translateX(-50px) translateY(-50px);
+}
+@keyframes border {
+  0%,
+  100% {
+    -webkit-clip-path: polygon(
+      0 0,
+      calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+      100% 100%,
+      calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+    );
+    clip-path: polygon(
+      0 0,
+      calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+      100% 100%,
+      calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+    );
+  }
+  50% {
+    -webkit-clip-path: polygon(
+      calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+      100% 0,
+      calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+      0 100%
+    );
+    clip-path: polygon(
+      calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+      100% 0,
+      calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+      0 100%
+    );
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-6px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+
+.box:after {
+  animation-delay: -5s;
+  background-color: #93e1d8;
+  /*background-color: #dfe6e9;*/
+  clip-path: polygon(
+    0 0,
+    calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
+    100% 100%,
+    calc(0% + (33.3333333333px)) calc(100% - (33.3333333333px))
+  );
+}
+.box:before {
+  background-color: #aa4465;
+  /*background-color: #a1828c;*/
+  clip-path: polygon(
+    calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
+    100% 0,
+    calc(100% - (33.3333333333px)) calc(100% - (33.3333333333px)),
+    0 100%
+  );
+}
+
+/*
+.box:hover:after {
+  animation-delay: -0.1s;
+}
+.box:hover:before,
+.box:hover:after {
+  animation-duration: 0.2s;
+}
+*/
+
+.player__card {
+  z-index: 5;
+  margin: 50px 0px;
+  width: 100%;
+  height: 249px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  position: relative;
+  /* overflow: hidden;*/
+  user-select: none;
+  /*background-image: url(https://www.pesmaster.com/pes-2020/graphics/cards/000_l.png);*/
+}
+
+.player__card-ovr {
+  margin-left: 30px;
+  position: absolute;
+  text-align: center;
+  font-size: 40px;
+  font-family: "DINPro-Bold", "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #fff;
+  width: 66px;
+  top: 63px;
+  left: 0;
+  z-index: 4;
+}
+.player__card-position {
+  position: absolute;
+  text-align: center;
+  font-size: 36px;
+  font-family: "DINPro-Bold", "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #fff;
+  width: 66px;
+  top: 10px;
+  left: 0;
+  z-index: 4;
+  margin-left: 30px;
+  background-color: red;
+  width: auto;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+.player__card-degree {
+  position: absolute;
+  text-align: center;
+  font-size: 59px;
+  font-family: "DINPro-Bold", "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #fff;
+  width: 66px;
+  top: 108px;
+  left: 0;
+  z-index: 4;
+  margin-left: 30px;
+}
+.player__card-nation {
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+  font-family: "DINPro-Bold", "Open Sans", sans-serif;
+  font-weight: bold;
+  color: #fff;
+  width: 66px;
+  top: 2px;
+  left: 0;
+  z-index: 4;
+  margin-left: 7px;
+}
+.player__card-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 35px;
+  font-size: 34px;
+  font-weight: 600;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+  font-family: "DINPro-Medium", "Open Sans", sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.player__card-image {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.diamond {
+  overflow: hidden;
+  position: relative;
+  padding: 20%;
+  width: 0;
+  transform: rotate(-30deg) skewX(30deg) scaleY(0.866);
+}
+.diamond:before {
+  position: absolute;
+  top: 0%;
+  right: -37.5%;
+  bottom: 0;
+  left: -37.5%;
+  transform: scaleY(1.155) skewX(-30deg) rotate(30deg);
+  background: linear-gradient(90deg, crimson 50%, transparent 50%);
+  background-size: 6px;
+  content: "";
+}

@@ -37,10 +37,13 @@ button:focus {
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 30px;
   font-weight: 400;
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   text-align: center;
   margin: 10px 5px;
+  color: black;
 }
 
 #stage {

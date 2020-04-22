@@ -7,6 +7,7 @@ let repText = "";
 let arrText = "";
 
 let 선수이름 = "";
+let playerID = "";
 
 const SLOTS_PER_REEL = 12;
 // radius = Math.round( ( panelWidth / 2) / Math.tan( Math.PI / SLOTS_PER_REEL ) );
@@ -110,8 +111,9 @@ function spin(timer) {
   // pesdb 사이트 검색
 
   선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
+  playerID = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
   const 선수 = pList.filter(function(pList) {
-    return pList.name === 선수이름;
+    return pList.id === playerID;
   });
 
   setTimeout(function() {
@@ -119,14 +121,75 @@ function spin(timer) {
     $("#exampleModal").modal();
 
     $(".modal-body").empty();
-    $(".modal-body").append(선수이름 + "<br/>");
+    //$(".modal-body").append(선수이름 + "<br/>");
+
     if (선수.length == 0) {
       //$(".modal-body").append("검색가능한 선수가 아닙니다.");
     } else {
+      const divTag = document.createElement("div");
+      divTag.className = "box player__card";
+
+      const divOvrTag = document.createElement("div");
+      divOvrTag.className = "player__card-ovr";
+      divOvrTag.innerHTML = 선수[0].overall;
+
+      const divPosTag = document.createElement("div");
+      divPosTag.className = "player__card-position";
+      divPosTag.innerHTML = 선수[0].position;
+      if (
+        선수[0].position == "CF" ||
+        선수[0].position == "SS" ||
+        선수[0].position == "LWF" ||
+        선수[0].position == "RWF"
+      ) {
+        divPosTag.style.backgroundColor = "red";
+      } else if (
+        선수[0].position == "AMF" ||
+        선수[0].position == "CMF" ||
+        선수[0].position == "DMC" ||
+        선수[0].position == "RMF" ||
+        선수[0].position == "LMF"
+      ) {
+        divPosTag.style.backgroundColor = "green";
+      } else if (
+        선수[0].position == "CB" ||
+        선수[0].position == "LB" ||
+        선수[0].position == "RB"
+      ) {
+        divPosTag.style.backgroundColor = "blue";
+      } else if (선수[0].position == "GK") {
+        divPosTag.style.backgroundColor = "yellow";
+      } else {
+      }
+
+      const divDegTag = document.createElement("div");
+      divDegTag.className = "player__card-degree";
+      divDegTag.innerHTML = 선수[0].degree;
+
+      const divNamTag = document.createElement("div");
+      divNamTag.className = "player__card-name";
+      divNamTag.innerHTML = 선수[0].name;
+
+      const imgPlayer = document.createElement("img");
+      imgPlayer.className = "player__card-image";
+      imgPlayer.setAttribute(
+        "src",
+        "http://pesdb.net/pes2020/images/players/" + playerID + ".png"
+      );
+
+      divTag.append(divOvrTag);
+      divTag.append(divPosTag);
+      divTag.append(divDegTag);
+      divTag.append(divNamTag);
+      divTag.append(imgPlayer);
+
+      $(".modal-body").append(divTag);
+
       const aTag = document.createElement("a");
       aTag.setAttribute("href", "http://pesdb.net/pes2020/?id=" + 선수[0].id);
       aTag.setAttribute("target", "_blank");
       aTag.append("PESDB Site GOGO!");
+
       $(".modal-body").append(aTag);
     }
 
