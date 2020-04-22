@@ -146,7 +146,7 @@ function spin(timer) {
       } else if (
         선수[0].position == "AMF" ||
         선수[0].position == "CMF" ||
-        선수[0].position == "DMC" ||
+        선수[0].position == "DMF" ||
         선수[0].position == "RMF" ||
         선수[0].position == "LMF"
       ) {
