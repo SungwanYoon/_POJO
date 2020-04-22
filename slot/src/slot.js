@@ -165,6 +165,16 @@ function spin(timer) {
       const divDegTag = document.createElement("div");
       divDegTag.className = "player__card-degree";
       divDegTag.innerHTML = 선수[0].degree;
+      if (선수[0].degree == "S") {
+        divDegTag.style.color = "#afe1f8";
+      } else if (선수[0].degree == "A") {
+        divDegTag.style.color = "#fff389";
+      } else if (선수[0].degree == "B") {
+        divDegTag.style.color = "#efefef";
+      } else if (선수[0].degree == "C") {
+        divDegTag.style.color = "#e3974d";
+      } else {
+      }
 
       const divNamTag = document.createElement("div");
       divNamTag.className = "player__card-name";

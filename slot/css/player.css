@@ -83,8 +83,8 @@ body {
 
 .box:after {
   animation-delay: -5s;
-  background-color: #93e1d8;
-  /*background-color: #dfe6e9;*/
+  /*background-color: #93e1d8;*/
+  background-color: #e70033;
   clip-path: polygon(
     0 0,
     calc(100% - (33.3333333333px)) calc(0% + (33.3333333333px)),
@@ -93,8 +93,8 @@ body {
   );
 }
 .box:before {
-  background-color: #aa4465;
-  /*background-color: #a1828c;*/
+  /*background-color: #aa4465;*/
+  background-color: #2d2d2d;
   clip-path: polygon(
     calc(0% + (33.3333333333px)) calc(0% + (33.3333333333px)),
     100% 0,
