@@ -1,0 +1,25 @@
+{
+  "name": "doctor",
+  "version": "1.0.0",
+  "description": "doctor",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/init.js --delay 2"
+  },
+  "author": "Calvin Yoon",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

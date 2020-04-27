@@ -11,7 +11,7 @@ const LOG_PATH = "C:/apps/AesDecryptServer/logs";
 const PRO_PATH = "C:/apps/AesDecryptServer/proc";
 
 const OPT_MOD = "--Mode CryptClient ";
-const OPT_JOB = "--JobType FileDecrypt ";
+const OPT_JOB = "--JobType FileDecrypt MIX1024 ";
 
 const OPT_LOG = "--LogFile ";
 const OPT_SRC = "--SrcFile ";
@@ -58,7 +58,7 @@ function handleListening() {
 app.get("/desc", function(req, res) {
   try {
     const {
-      query: { filepath, filename }
+      query: { filepath, filename },
     } = req;
 
     //if (filepath == "favicon.ico") {
@@ -80,7 +80,7 @@ app.get("/desc", function(req, res) {
         count++;
 
         // File Exist Check
-        fs.access(PRO_PATH + "/" + filename + ".done", error => {
+        fs.access(PRO_PATH + "/" + filename + ".done", (error) => {
           if (!error) {
             // if exist
             console.log("file exist");
