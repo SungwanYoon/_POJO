@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(65deg, #323298, #418cab);
+      }
+
+      .pdf_box_input {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 6px;
+        box-shadow: 6px 6px 11px #1d306e;
+        width: 220px;
+        height: 390px;
+        background: #fff;
+        z-index: 50;
+      }
+
+      .inner {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .text {
+        font-size: 17px;
+        margin-bottom: 20px;
+        color: #222;
+      }
+
+      .input_num {
+        border: 1px solid #cfcfcf;
+        border-radius: 4px;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: 6px;
+        font-size: 15px;
+        box-sizing: border-box;
+      }
+
+      .btn_certify {
+        background: #1d306e;
+        border: 0;
+        border-radius: 4px;
+        color: #fff;
+        width: 100%;
+        height: 32px;
+        font-size: 15px;
+      }
+
+      .logo {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .logo img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .ghost {
+        display: none;
+      }
+    </style>
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <!-- favicon.ico 404 (Not Found) -->
+
+    <title>METLIFE</title>
+  </head>
+
+  <body>
+    <div id="메인">
+      <div class="bg"></div>
+
+      <form name="frm" method="post" onsubmit="return false;">
+        <div class="pdf_box_input">
+          <div class="inner">
+            <span class="logo">
+              <img src="" class="cmpLogo" alt="logo" />
+            </span>
+            <p class="text">인증번호 6자리를 <br />입력해 주세요</p>
+            <input
+              type="text"
+              name="물리적PDF파일명"
+              id="물리적PDF파일명"
+              value=""
+              style="display: none;"
+            />
+            <input
+              type="text"
+              name="인증번호"
+              id="인증번호"
+              title="인증번호"
+              maxlength="6"
+              class="인증번호 input_num"
+            />
+            <button
+              type="button"
+              id="인증번호전송"
+              class="인증번호전송 btn_certify"
+            >
+              인증
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="/js/libs/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+      const handleClick = () => {
+        let 인증번호 = $("#인증번호").val();
+        let 물리적PDF파일명 = "${pFileName}";
+
+        인증번호 = 인증번호.replace(/ /gi, ""); // 모든 공백을 제거
+
+        if (인증번호.length != 6) {
+          alert("인증번호를 확인해주세요.");
+          return;
+        }
+
+        $.ajax({
+          url: "/PDF/조회.do",
+          type: "POST",
+          dataType: "text json",
+          data: {
+            인증번호,
+            물리적PDF파일명,
+          },
+          success: function (res) {
+            if (res.data.물리적PDF파일명 != "") {
+              //alert("성공");
+              // PASS Viewer
+              //let passURL = "https://d${svrCode}.mbillpost.co.kr";
+              //passURL =
+              //	    passURL +
+              //	    "/${cmpCode}" +
+              //	    "/${svrCode}" +
+              //	    "/${fileType}" +
+              //	    "/${tplCode}" +
+              //	    "/${pFileName}";
+              //location.href = passURL;
+
+              // Update PDF Read Status
+              const updReadStatusUrl =
+                "/PDF/수정.do?물리적PDF파일명=${pFileName}";
+              const xhr = new XMLHttpRequest();
+              xhr.open("GET", updReadStatusUrl, true);
+              xhr.onload = function () {
+                //PASS Viewer
+                let passURL = "https://d${svrCode}.mbillpost.co.kr";
+                passURL =
+                  passURL +
+                  "/${cmpCode}" +
+                  "/${svrCode}" +
+                  "/${fileType}" +
+                  "/${tplCode}" +
+                  "/${pFileName}";
+                location.href = passURL;
+
+                // Call DESC
+                //const DECR_URL = "https://mbillpost.co.kr/desc";
+                //fetch(
+                //  DECR_URL +
+                //    "?filepath=" +
+                //    "/pdf" +
+                //    "/180006" +
+                //    "/${tplCode}" +
+                //    "&filename=${pFileName}",
+                //  {
+                //    method: "get",
+                //    mode: "cors",
+                //  }
+                //)
+                //  .then((response) => {
+                //    if (response.status == 200) {
+                //      // PASS Viewer
+                //      let passURL = "https://d${svrCode}.mbillpost.co.kr";
+                //      passURL =
+                //        passURL +
+                //        "/${cmpCode}" +
+                //        "/${svrCode}" +
+                //        "/${fileType}" +
+                //        "/${tplCode}" +
+                //        "/${pFileName}";
+                //      location.href = passURL;
+                //    } else {
+                //      alert("can't decrypt file.");
+                //    }
+                //    return response.json();
+                //  })
+                //  .then((data) => {
+                //    console.log(data);
+                //  });
+              };
+              xhr.send(null);
+            } else {
+              alert("인증번호를 확인해주세요.");
+            }
+            //does some success messages here
+          },
+          error: function (err) {
+            console.log(err);
+            alert("인증번호를 확인해주세요.");
+          },
+        });
+      };
+
+      const handleEnter = (e) => {
+        if (e.key == "Enter") {
+          e.preventDefault();
+          handleClick();
+        }
+      };
+
+      function init() {
+        // Logo Change
+        document.querySelector(".cmpLogo").src = "/images/logo_${cmpCode}.png";
+
+        // Element
+        const 인증번호전송 = document.querySelector(".인증번호전송");
+        const 인증번호 = document.querySelector(".인증번호");
+
+        인증번호전송.addEventListener("click", handleClick);
+        인증번호.addEventListener("keydown", handleEnter);
+      }
+
+      init();
+
+      const findGetParameter = (paramName) => {
+        var result = null,
+          tmp = [];
+        location.search
+          .substr(1)
+          .split("&")
+          .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === paramName) result = decodeURIComponent(tmp[1]);
+          });
+        return result;
+      };
+    </script>
+  </body>
+</html>
