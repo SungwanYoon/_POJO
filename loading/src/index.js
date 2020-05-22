@@ -44,7 +44,7 @@ const callAPI = () => {
     const xhr = new XMLHttpRequest();
     const fetchURL = UPDATE_READ_URL + "/" + fileName;
     xhr.open("GET", fetchURL, true);
-    xhr.onload = function() {
+    xhr.onload = function () {
       fetch(
         DECR_URL +
           "?filepath=" +
@@ -56,10 +56,10 @@ const callAPI = () => {
           fileName,
         {
           method: "get",
-          mode: "cors"
+          mode: "cors",
         }
       )
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             location.href = passURL;
           } else {
@@ -67,7 +67,7 @@ const callAPI = () => {
           }
           return response.json();
         })
-        .then(data => {
+        .then((data) => {
           console.log(data);
         });
     };
