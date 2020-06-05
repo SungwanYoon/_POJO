@@ -1,0 +1,230 @@
+<div class="sub_visual" data-category="my">ORDERING DELEVERY</div>
+<section id="신청중인주문" class="content ghost">
+  <div class="info_title">
+    <h2 class="tit">신청중인 주문</h2>
+    <p class="desc">회원님이 신청중이신 주문 리스트 입니다.</p>
+  </div>
+  <div class="order_sec">
+    <ul class="noti_list">
+      <li class="star_noti">
+        신청 중인 주문은 <em>저장 후 48시간이 지나면 삭제</em>됩니다.
+      </li>
+      <li class="star_noti">
+        <span>신청 중인 주문 중 원하시는 주문을 선택하시고 결제를 진행</span
+        >해주세요.
+      </li>
+    </ul>
+    <div class="list_table">
+      <table id="신청중인주문그리드" class="full">
+        <caption>
+          신청중인 주문
+        </caption>
+        <colgroup>
+          <col style="width: 7.5%;" />
+          <col style="width: 14.6%;" />
+          <col style="width: 19%;" />
+          <col style="width: 16%;" />
+          <col style="width: auto;" />
+          <col style="width: 10%;" />
+          <col style="width: 14.6%;" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th id="전체선택" scope="col">선택</th>
+            <th scope="col">주문 저장 날짜</th>
+            <th scope="col">DM 구분</th>
+            <th scope="col">발송수량</th>
+            <th scope="col">전단지면 수</th>
+            <th scope="col">사이즈</th>
+            <th scope="col">결제금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="input_set" data-type="checkbox">
+                <!-- <input type="checkbox" data-상품명="{상품명}" data-주문아이디="{주문아이디}" name="신청중인주문체크박스" id="선택" /> <label for="선택"></label> -->
+                <input
+                  type="checkbox"
+                  data-prodname=""
+                  data-joomoonid=""
+                  class="신청중인주문체크박스"
+                  name="신청중인주문체크박스"
+                  id="선택"
+                />
+                <label for="선택"></label>
+              </div>
+            </td>
+            <td id="등록일시">{등록일시}</td>
+            <td id="상품명">{상품명}</td>
+            <td><span id="주소목록수">{주소목록수}</span>건</td>
+            <td><span id="내지매수코드">{내지매수코드}</span>면</td>
+            <td id="사이즈코드">{사이즈코드}</td>
+            <td>
+              <span data-color="price">
+                <span id="결제금액">{결제금액}</span>원
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="btn_list" data-align="center">
+      <button id="선택한내역결제버튼" type="button" class="out_field_btn">
+        선택한 내역 결제
+      </button>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  N('#신청중인주문').cont({
+  	name : '신청중인주문',
+  	comp : {
+  		선택내역 : [],
+  		신청중인주문그리드 : null,
+  		신청중인주문페이징 : null
+  	},
+  	eventConfig : {
+  		'ebus:신청중인주문.조회' : function(o, C) {
+  			N(".loading_spinner").show();
+  			var url = '/주문내역/신청중인목록.do';
+  			N().comm(url).submit(function(o){
+  				C.comp.신청중인주문그리드.bind(o.data);
+  				N(".loading_spinner").hide();
+  			});
+  		},
+  		'#선택한내역결제버튼:click' : function(e, el, C) {
+  			var 체크박스엘리먼츠 = C.N('input[name=신청중인주문체크박스]:checked');
+  			if(체크박스엘리먼츠.length == 0 ) {
+  				alert("신청중인 내역을 선택해 주세요.");
+  				return false;
+  			}
+
+  			var 상품명 = "";
+  			var 주문번호 = "";
+  			for(var line = 0; line < 체크박스엘리먼츠.length; line++) {
+  				if(line == 0) {
+  					상품명 += N(체크박스엘리먼츠[line]).data('prodname');
+  					주문번호 += N(체크박스엘리먼츠[line]).data('joomoonid');
+  				} else {
+  					상품명 += "_" + N(체크박스엘리먼츠[line]).data('prodname');
+  					주문번호 += "_" + N(체크박스엘리먼츠[line]).data('joomoonid');
+  				}
+
+  			}
+
+  			//N.log(C.comp.선택내역);
+  			url = "/결제내역/" + 상품명 + "/" + 주문번호 + "/요청스.do";
+
+  			//N.log(url);
+  			goPay(url);
+
+  		}
+  	},
+  	init : function(view, request) {
+  		var C = this;
+
+  		/* 세션체크 */
+  		<#if !세션?hasContent>
+  		var url = '/p/96.do';
+  		C.event('hash', { url: url });
+
+  		<#else>
+  		C.comp.신청중인주문그리드 = N([]).grid({
+  			context : "#신청중인주문그리드",
+  			rowHandler : function(idx, el, data) {
+  				var id = 'choice' + idx;
+  				el.find(".input_set").find("label").attr("for", id).siblings("input").attr("id", id);
+
+  				N(el.find(".신청중인주문체크박스").get(0)).attr("data-joomoonid", data.주문아이디);
+  				N(el.find(".신청중인주문체크박스").get(0)).attr("data-prodname", data.상품명);
+
+  			},
+  			rowHandlerBeforeBind : function(rowIdx, rowEl, rowData){
+  				rowData.status = rowData.진행상태;
+
+  				var 등록일시 = rowData.등록일시;
+  				var 년 = N.formatter.date(등록일시, 'Y');
+  				var 월 = N.formatter.date(등록일시, 'm');
+  				var 일 = N.formatter.date(등록일시, 'd');
+  				rowData.등록일시 = 년+"-"+월+"-"+일;
+
+  				var $status = rowEl.find(".status");
+  				if(rowData.결제상태 === "Y"){
+  					rowData.결제상태 = "완료";
+  				} else {
+  					rowData.결제상태 = "대기";
+  				}
+  				rowEl.find(".btn_list").remove();
+  				rowData.결제금액 = N.formatter.commas("" + rowData.결제금액);
+
+  				if(rowData.사이즈코드 == "B01") {
+  					rowData.사이즈코드 = "접착형 192*260";
+  				} else if (rowData.사이즈코드 == "B02") {
+  					rowData.사이즈코드 = "접착형 A4(210*297)";
+  				} else if (rowData.사이즈코드 == "E01") {
+  					rowData.사이즈코드 = "봉투형 A4";
+  				} else if (rowData.사이즈코드 == "E02") {
+  					rowData.사이즈코드 = "봉투형 A3";
+  				} else if (rowData.사이즈코드 == "E03") {
+  					rowData.사이즈코드 = "봉투형 A2";
+  				} else {
+
+  				}
+
+  			}
+
+  		}).bind();
+
+  		C.event('신청중인주문.조회');
+
+  		</#if>
+
+  	}
+
+  });
+</script>
+<script>
+  /* 결제요청 시작 */
+  function goPay(url) {
+    var $iframe, iframe_doc, iframe_html;
+
+    if (($iframe = $("#pay_iframe")).length === 0) {
+      $iframe = $(
+        "<iframe id='pay_iframe' style='display: none' src='about:blank'></iframe>"
+      ).appendTo("body");
+    }
+
+    iframe_doc = $iframe[0].contentWindow || $iframe[0].contentDocument;
+    if (iframe_doc.document) {
+      iframe_doc = iframe_doc.document;
+    }
+
+    iframe_html =
+      "<html><head></head><body><form method='GET' action='" + url + "'>";
+    iframe_html += "</form></body></html>";
+
+    iframe_doc.open();
+    iframe_doc.write(iframe_html);
+    $(iframe_doc).find("form").submit();
+  }
+
+  function goPay_Return(flag) {
+    if (flag == "Y") {
+      if (
+        confirm(
+          "결제가 완료되었습니다.\n주문내역 조회화면으로 이동하시겠습니까?"
+        )
+      ) {
+        location.href = "/#91.do";
+      } else {
+        location.reload();
+      }
+      //alert("결제 완료되었습니다.");
+    } else {
+      alert(flag);
+    }
+  }
+  /* 결제요청 종료 */
+</script>
