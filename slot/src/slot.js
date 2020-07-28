@@ -112,11 +112,11 @@ function spin(timer) {
 
   선수이름 = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
   playerID = $("#" + ring.id + " div:eq(" + ring_ntr + ") p").text();
-  const 선수 = pList.filter(function(pList) {
+  const 선수 = pList.filter(function (pList) {
     return pList.id === playerID;
   });
 
-  setTimeout(function() {
+  setTimeout(function () {
     coinSound();
     $("#exampleModal").modal();
 
@@ -125,6 +125,7 @@ function spin(timer) {
 
     if (선수.length == 0) {
       //$(".modal-body").append("검색가능한 선수가 아닙니다.");
+      $(".modal-body").append(선수이름 + "<br/>");
     } else {
       const divTag = document.createElement("div");
       divTag.className = "box player__card";
@@ -274,7 +275,7 @@ function clipboardCopy() {
   //console.log("copy : ", succesful);
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   // 1.슬롯만들기
   createSlots($("#ring1"));
   createSlots($("#ring2"));
@@ -283,14 +284,14 @@ $(document).ready(function() {
   createSlots($("#ring5"));
 
   // hook start button
-  $(".go").on("click", function() {
+  $(".go").on("click", function () {
     startPlay();
 
     if (slotting) {
       //console.log("spinning");
     } else {
       coinSound();
-      setTimeout(function() {
+      setTimeout(function () {
         resetRing();
         var timer = 3;
         spin(timer);
@@ -299,7 +300,7 @@ $(document).ready(function() {
   });
 
   // hook xray checkbox
-  $("#xray").on("click", function() {
+  $("#xray").on("click", function () {
     //var isChecked = $('#xray:checked');
     var tilt = "tiltout";
 
@@ -308,14 +309,14 @@ $(document).ready(function() {
       $(".slot").addClass("backface-on");
       $("#rotate").css("animation", tilt + " 2s 1");
 
-      setTimeout(function() {
+      setTimeout(function () {
         $("#rotate").toggleClass("tilted");
       }, 2000);
     } else {
       tilt = "tiltout";
       $("#rotate").css({ animation: tilt + " 2s 1" });
 
-      setTimeout(function() {
+      setTimeout(function () {
         $("#rotate").toggleClass("tilted");
         $(".slot").removeClass("backface-on");
       }, 1900);
@@ -323,11 +324,11 @@ $(document).ready(function() {
   });
 
   // hook perspective
-  $("#perspective").on("click", function() {
+  $("#perspective").on("click", function () {
     $("#stage").toggleClass("perspective-on perspective-off");
   });
 
-  $("#deleteBtn").on("click", function(e) {
+  $("#deleteBtn").on("click", function (e) {
     e.preventDefault();
     //const playerName = $(".modal-body").text();
     textarea.value = textarea.value.replace(선수이름, "");
@@ -338,18 +339,18 @@ $(document).ready(function() {
     $("#closeBtn").click();
   });
 
-  $("#closeBtn").on("click", function(e) {
+  $("#closeBtn").on("click", function (e) {
     clipboardCopy();
   });
 
-  $("textarea").focusout(function() {
+  $("textarea").focusout(function () {
     var avalue = $("textarea").val();
     var newVal = avalue.replace(/^\s*[\r\n]/gm, "");
     //var finalResults = newVal.replace("\n", "");
     $("textarea").val(newVal);
   });
 
-  $(".clear-text").click(function() {
+  $(".clear-text").click(function () {
     $("textarea").val("");
   });
 
