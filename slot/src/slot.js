@@ -1,6 +1,8 @@
 const body = document.querySelector("body");
 const textarea = body.querySelector("textarea");
 
+let fitstTimeLoading = true;
+
 let slotting = false;
 
 let repText = "";
@@ -253,6 +255,17 @@ function screamPlay() {
   }
 }
 
+function initSound() {
+  var audio = document.getElementById("init-sound");
+  audio.volume = 0.5;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
 function clipboardCopy() {
   const tmpTxt = document.createElement("textarea");
   tmpTxt.style.position = "fixed";
@@ -285,6 +298,15 @@ $(document).ready(function () {
 
   // hook start button
   $(".go").on("click", function () {
+    // if (fitstTimeLoading) {
+    //   fitstTimeLoading = false;
+    //   initSound();
+    //   setTimeout(function () {
+    //     $(".go").click();
+    //   }, 10000);
+    //   return;
+    // }
+
     startPlay();
 
     if (slotting) {

@@ -117,14 +117,9 @@
     </div>
     <!--<script src="src/index.js"></script>-->
     <script>
-      const coinList = document.querySelector("#jsCoin");
-
-      const MAIN_URL = "https://dm.mbillpost.co.kr";
-      const UPDATE_READ_URL =
-        "https://dm.mbillpost.co.kr/PDF/수정.do?물리적PDF파일명=";
-      const DECR_URL = "https://dm.mbillpost.co.kr/desc";
-
-      let timeoutId;
+      const MAIN_URL = "https://mbillpost.co.kr";
+      const UPDATE_READ_URL = "/PDF/뷰어로그.do?";
+      const SELECT_DELETED_PDF = "/PDF/삭제여부.do?";
 
       const getPathParam = (num, url) => {
         if (!url) url = location.pathname;
@@ -135,86 +130,83 @@
         return args[num];
       };
 
-      const api = {
-        fetchAPI: () =>
-          fetch(UPDATE_READ_URL, {
-            method: "get",
-            mode: "cors",
-          }),
-      };
+      const cmpCode = getPathParam("1");
+      const authType = getPathParam("2");
+      const svrCode = getPathParam("3");
+      const fileType = getPathParam("4");
+      const tplCode = getPathParam("5");
+      const fileName = getPathParam("6");
 
-      const invokeAPI = () => {
-        return new Promise((resolve, reject) => {
-          resolve(api.fetchAPI());
-        });
-      };
+      // Routing Logics
+      let passURL = "";
 
-      const callAPI = () => {
-        const cmpCode = getPathParam("1");
-        const authType = getPathParam("2");
-        const svrCode = getPathParam("3");
-        const fileType = getPathParam("4");
-        const tplCode = getPathParam("5");
-        const fileName = getPathParam("6");
+      const domain = "https://d" + svrCode + ".mbillpost.co.kr";
 
-        // Routing Logics
-        let passURL = "";
+      if (fileName) {
+        const params =
+          "물리적PDF파일명=" +
+          fileName +
+          "&구분=" +
+          (authType.indexOf("1") !== -1 ? "2" : "1") +
+          "" +
+          "&서버코드=" +
+          svrCode +
+          "&URL=" +
+          window.location.href +
+          "&사용자=nginx" +
+          "&임시조회여부=ok";
+        const fetchURL = UPDATE_READ_URL + params;
+        const fetchSelectDeletedPdfURL = SELECT_DELETED_PDF + params;
 
-        const domain = "https://pdf.mbillpost.co.kr";
+        fetch(fetchSelectDeletedPdfURL)
+          .then((response) => response.json())
+          .then((data) => {
+            const {
+              data: { result },
+            } = data;
 
-        if (fileName) {
-          const pdfURL =
-            MAIN_URL +
-            "/" +
-            "pdfcheck" +
-            "/" +
-            "180006" +
-            "/" +
-            tplCode +
-            "/" +
-            fileName +
-            ".enc";
-          const fetchURL = UPDATE_READ_URL + fileName;
-
-          // PDF exist check
-          fetch(pdfURL).then((response) => {
-            if (response.status == 200) {
-              // PDF read check
-              const xhr = new XMLHttpRequest();
-              xhr.open("GET", fetchURL, true);
-              xhr.onload = function () {
-                // Viewer call
-                passURL =
-                  domain +
-                  "/" +
-                  cmpCode +
-                  "/" +
-                  svrCode +
-                  "/" +
-                  fileType +
-                  "/" +
-                  tplCode +
-                  "/" +
-                  fileName;
-                console.log(passURL);
-                location.href = passURL;
-              };
-              xhr.send(null);
-            } else {
+            // 파일없음
+            if (result == null) {
+              // 파일없음
               location.href = "/404";
+            } else {
+              if (result.파일삭제일시) {
+                // 조회불가 (조회기간만료,삭제기간)
+                location.href = "/html/HTTP_END.html";
+              } else {
+                // 조회가능
+                // PDF read check
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", fetchURL, true);
+                xhr.onloadstart = function () {
+                  // Viewer call
+                  passURL =
+                    domain +
+                    "/" +
+                    cmpCode +
+                    "/" +
+                    authType +
+                    "/" +
+                    svrCode +
+                    "/" +
+                    fileType +
+                    "/" +
+                    tplCode +
+                    "/" +
+                    fileName;
+
+                  location.href = passURL;
+                };
+                xhr.send(null);
+              }
             }
+
             return;
           });
-        } else {
-          location.href = "/404";
-        }
-      };
-
-      function init() {
-        callAPI();
+      } else {
+        location.href = "/404";
+        //alert("File name missing.");
       }
-
-      init();
     </script>
   </body>
 </html>
