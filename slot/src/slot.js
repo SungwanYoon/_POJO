@@ -187,7 +187,7 @@ function spin(timer) {
       imgPlayer.className = "player__card-image";
       imgPlayer.setAttribute(
         "src",
-        "http://pesdb.net/pes2020/images/players/" + playerID + ".png"
+        "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
       );
 
       divTag.append(divOvrTag);
@@ -199,7 +199,7 @@ function spin(timer) {
       $(".modal-body").append(divTag);
 
       const aTag = document.createElement("a");
-      aTag.setAttribute("href", "http://pesdb.net/pes2020/?id=" + 선수[0].id);
+      aTag.setAttribute("href", "http://pesdb.net/pes2021/?id=" + 선수[0].id);
       aTag.setAttribute("target", "_blank");
       aTag.append("PESDB Site GOGO!");
 
