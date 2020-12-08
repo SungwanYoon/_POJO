@@ -18,15 +18,15 @@ body {
 }
 
 button {
-  border: 5px solid #718093;
+  border: 5px solid #9c0058;
   font-size: 30px;
   font-weight: 600;
   border-radius: 10px;
-  background-color: #aa4465;
-  color: #f5f6fa;
+  background-color: #d31145;
+  color: #ffffff;
 }
 button:hover {
-  background-color: #753046;
+  background-color: #9c0058;
 }
 button:focus {
   outline: none;
@@ -129,7 +129,7 @@ button:focus {
   opacity: 0.9;
   color: #2f3640;
   background: #fff;
-  border: solid 2px #aa4465;
+  border: solid 2px #d31145;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -167,7 +167,7 @@ button:focus {
   display: block;
   margin: 0 auto 20px;
   padding: 10px 30px;
-  font-size: 20px;
+  font-size: 28px;
   cursor: pointer;
 }
 label {
@@ -429,7 +429,7 @@ label {
     width: 90px;
   }
   .rotate__bottom {
-    padding-top: 125px;
+    padding-top: 230px;
   }
 }
 @media screen and (max-width: 520px) {
@@ -445,5 +445,60 @@ label {
   }
   .rotate__bottom {
     margin: 70px 70px;
+  }
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.shake2 {
+  animation: 0.8s shake2 infinite alternate;
+}
+
+@keyframes shake2 {
+  0% {
+    transform: skewX(-15deg);
+  }
+  5% {
+    transform: skewX(15deg);
+  }
+  10% {
+    transform: skewX(-15deg);
+  }
+  15% {
+    transform: skewX(15deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
   }
 }

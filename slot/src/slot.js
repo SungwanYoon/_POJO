@@ -204,6 +204,27 @@ function spin(timer) {
       aTag.append("PESDB Site GOGO!");
 
       $(".modal-body").append(aTag);
+
+      // Animation added
+      hide(divDegTag);
+      hide(divPosTag);
+      hide(divNamTag);
+
+      // 등급
+      setTimeout(() => {
+        show(divDegTag);
+        divDegTag.classList.add("shake");
+        // 포지션
+        setTimeout(() => {
+          show(divPosTag);
+          divPosTag.classList.add("shake");
+          // 이름
+          setTimeout(() => {
+            show(divNamTag);
+            divNamTag.classList.add("shake2");
+          }, 1000);
+        }, 900);
+      }, 800);
     }
 
     screamPlay();
@@ -287,6 +308,16 @@ function clipboardCopy() {
   modalBody.removeChild(tmpTxt);
   //console.log("copy : ", succesful);
 }
+
+// Show an element
+const show = (elem) => {
+  elem.style.display = "block";
+};
+
+// Hide an element
+const hide = (elem) => {
+  elem.style.display = "none";
+};
 
 $(document).ready(function () {
   // 1.슬롯만들기
