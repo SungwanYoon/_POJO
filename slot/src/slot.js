@@ -196,35 +196,78 @@ function spin(timer) {
       divTag.append(divNamTag);
       divTag.append(imgPlayer);
 
-      $(".modal-body").append(divTag);
-
-      const aTag = document.createElement("a");
-      aTag.setAttribute("href", "http://pesdb.net/pes2021/?id=" + 선수[0].id);
-      aTag.setAttribute("target", "_blank");
-      aTag.append("PESDB Site GOGO!");
-
-      $(".modal-body").append(aTag);
-
-      // Animation added
-      hide(divDegTag);
-      hide(divPosTag);
-      hide(divNamTag);
-
+      // 등급 > 국적 > 오버롤 > 사진 > 정리
       // 등급
       setTimeout(() => {
-        show(divDegTag);
-        divDegTag.classList.add("shake");
-        // 포지션
+        const divDegTagPoint = document.createElement("div");
+        divDegTagPoint.className = "player__card-pointer";
+        divDegTagPoint.innerHTML = 선수[0].degree;
+        if (선수[0].degree == "S") {
+          divDegTagPoint.style.color = "#afe1f8";
+        } else if (선수[0].degree == "A") {
+          divDegTagPoint.style.color = "#fff389";
+        } else if (선수[0].degree == "B") {
+          divDegTagPoint.style.color = "#efefef";
+        } else if (선수[0].degree == "C") {
+          divDegTagPoint.style.color = "#e3974d";
+        } else {
+        }
+        $(".modal-body").empty();
+        $(".modal-body").append(divDegTagPoint);
+        divDegTagPoint.classList.add("shake2");
+        shakeModal();
+
+        // 국적
         setTimeout(() => {
-          show(divPosTag);
-          divPosTag.classList.add("shake");
-          // 이름
+          const divNatTagPointer = document.createElement("div");
+          divNatTagPointer.className = "player__card-pointer";
+          divNatTagPointer.innerHTML = 선수[0].nationality;
+          $(".modal-body").empty();
+          $(".modal-body").append(divNatTagPointer);
+          divNatTagPointer.classList.add("shake2");
+          shakeModal();
+
+          // 오버롤
           setTimeout(() => {
-            show(divNamTag);
-            divNamTag.classList.add("shake2");
+            const divOvrTagPointer = document.createElement("div");
+            divOvrTagPointer.className = "player__card-pointer";
+            divOvrTagPointer.innerHTML = 선수[0].overall;
+            $(".modal-body").empty();
+            $(".modal-body").append(divOvrTagPointer);
+            divOvrTagPointer.classList.add("shake2");
+            shakeModal();
+
+            // 사진
+            setTimeout(() => {
+              const imgPlayerPointer = document.createElement("img");
+              imgPlayerPointer.className = "player__card-pointer";
+              imgPlayerPointer.setAttribute(
+                "src",
+                "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
+              );
+              $(".modal-body").empty();
+              $(".modal-body").append(imgPlayerPointer);
+              imgPlayerPointer.classList.add("shake2");
+              shakeModal();
+
+              // 최종
+              setTimeout(() => {
+                shakeModal();
+                $(".modal-body").empty();
+                $(".modal-body").append(divTag);
+                const aTag = document.createElement("a");
+                aTag.setAttribute(
+                  "href",
+                  "http://pesdb.net/pes2021/?id=" + 선수[0].id
+                );
+                aTag.setAttribute("target", "_blank");
+                aTag.append("PESDB Site GOGO!");
+                $(".modal-body").append(aTag);
+              }, 1000);
+            }, 1000);
           }, 1000);
-        }, 900);
-      }, 800);
+        }, 1000);
+      }, 0);
     }
 
     screamPlay();
@@ -267,7 +310,7 @@ function startPlay() {
 
 function screamPlay() {
   var audio = document.getElementById("scream-sound");
-  audio.volume = 0.5;
+  audio.volume = 0.4;
   if (audio.paused) {
     audio.play();
   } else {
@@ -278,7 +321,7 @@ function screamPlay() {
 
 function initSound() {
   var audio = document.getElementById("init-sound");
-  audio.volume = 0.5;
+  audio.volume = 0.3;
   if (audio.paused) {
     audio.play();
   } else {
@@ -317,6 +360,13 @@ const show = (elem) => {
 // Hide an element
 const hide = (elem) => {
   elem.style.display = "none";
+};
+
+const shakeModal = () => {
+  const modal = document.querySelector("#exampleModal");
+  modal.classList.remove("shake");
+  void modal.offsetWidth;
+  modal.classList.add("shake");
 };
 
 $(document).ready(function () {
