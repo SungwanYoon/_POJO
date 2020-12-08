@@ -128,6 +128,7 @@ function spin(timer) {
     if (선수.length == 0) {
       //$(".modal-body").append("검색가능한 선수가 아닙니다.");
       $(".modal-body").append(선수이름 + "<br/>");
+      screamPlay();
     } else {
       const divTag = document.createElement("div");
       divTag.className = "box player__card";
@@ -263,6 +264,7 @@ function spin(timer) {
                 aTag.setAttribute("target", "_blank");
                 aTag.append("PESDB Site GOGO!");
                 $(".modal-body").append(aTag);
+                screamPlay();
               }, 1000);
             }, 1000);
           }, 1000);
@@ -270,7 +272,6 @@ function spin(timer) {
       }, 0);
     }
 
-    screamPlay();
     slotting = false;
     $("#xray").click();
   }, timer * 1000 + 2500);
