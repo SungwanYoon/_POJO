@@ -274,7 +274,8 @@ function spin(timer) {
 
     slotting = false;
     $("#xray").click();
-  }, timer * 1000 + 2500);
+    //}, timer * 1000 + 2500);
+  }, timer * 800);
 }
 
 function resetRing() {
