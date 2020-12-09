@@ -216,16 +216,21 @@ function spin(timer) {
         $(".modal-body").empty();
         $(".modal-body").append(divDegTagPoint);
         divDegTagPoint.classList.add("shake2");
+        boom1Play();
+        boom2Play();
         shakeModal();
 
         // 국적
         setTimeout(() => {
           const divNatTagPointer = document.createElement("div");
           divNatTagPointer.className = "player__card-pointer";
+          divNatTagPointer.style.fontSize = "xxx-large";
           divNatTagPointer.innerHTML = 선수[0].nationality;
           $(".modal-body").empty();
           $(".modal-body").append(divNatTagPointer);
           divNatTagPointer.classList.add("shake2");
+          boom1Play();
+          boom2Play();
           shakeModal();
 
           // 오버롤
@@ -236,6 +241,8 @@ function spin(timer) {
             $(".modal-body").empty();
             $(".modal-body").append(divOvrTagPointer);
             divOvrTagPointer.classList.add("shake2");
+            boom1Play();
+            boom2Play();
             shakeModal();
 
             // 사진
@@ -249,6 +256,8 @@ function spin(timer) {
               $(".modal-body").empty();
               $(".modal-body").append(imgPlayerPointer);
               imgPlayerPointer.classList.add("shake2");
+              boom1Play();
+              boom2Play();
               shakeModal();
 
               // 최종
@@ -264,6 +273,8 @@ function spin(timer) {
                 aTag.setAttribute("target", "_blank");
                 aTag.append("PESDB Site GOGO!");
                 $(".modal-body").append(aTag);
+                boom1Play();
+                boom2Play();
                 screamPlay();
               }, 1000);
             }, 1000);
@@ -307,6 +318,30 @@ function startPlay() {
   } else {
     audio.pause();
     audio.currentTime = 0;
+  }
+}
+
+function boom1Play() {
+  var audio = document.getElementById("boom1-sound");
+  audio.volume = 0.4;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
+function boom2Play() {
+  var audio = document.getElementById("boom2-sound");
+  audio.volume = 0.4;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
   }
 }
 
