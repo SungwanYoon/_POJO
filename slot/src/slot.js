@@ -118,6 +118,11 @@ function spin(timer) {
     return pList.id === playerID;
   });
 
+  if (선수[0].degree == "S") {
+    twinklePlay();
+    shakeStage();
+  }
+
   setTimeout(function () {
     coinSound();
     $("#exampleModal").modal();
@@ -224,7 +229,7 @@ function spin(timer) {
         setTimeout(() => {
           const divNatTagPointer = document.createElement("div");
           divNatTagPointer.className = "player__card-pointer";
-          divNatTagPointer.style.fontSize = "12vw";
+          //divNatTagPointer.style.fontSize = "5vw";
           divNatTagPointer.innerHTML = 선수[0].nationality;
           boom3Play();
           boom4Play();
@@ -312,6 +317,18 @@ function coinSound() {
   }
 }
 
+function twinklePlay() {
+  var audio = document.getElementById("twinkle-sound");
+  audio.volume = 0.9;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
 function startPlay() {
   var audio = document.getElementById("start-sound");
   audio.volume = 0.8;
@@ -333,7 +350,7 @@ function startPlay() {
 
 function boom1Play() {
   var audio = document.getElementById("boom1-sound");
-  audio.volume = 0.7;
+  audio.volume = 0.9;
   if (audio.paused) {
     audio.play();
   } else {
@@ -345,7 +362,7 @@ function boom1Play() {
 
 function boom2Play() {
   var audio = document.getElementById("boom2-sound");
-  audio.volume = 0.7;
+  audio.volume = 0.9;
   if (audio.paused) {
     audio.play();
   } else {
@@ -357,7 +374,7 @@ function boom2Play() {
 
 function boom3Play() {
   var audio = document.getElementById("boom3-sound");
-  audio.volume = 0.7;
+  audio.volume = 0.9;
   if (audio.paused) {
     audio.play();
   } else {
@@ -369,7 +386,7 @@ function boom3Play() {
 
 function boom4Play() {
   var audio = document.getElementById("boom4-sound");
-  audio.volume = 0.7;
+  audio.volume = 0.9;
   if (audio.paused) {
     audio.play();
   } else {
@@ -381,7 +398,7 @@ function boom4Play() {
 
 function screamPlay() {
   var audio = document.getElementById("scream-sound");
-  audio.volume = 0.4;
+  audio.volume = 0.2;
   if (audio.paused) {
     audio.play();
   } else {
@@ -431,6 +448,13 @@ const show = (elem) => {
 // Hide an element
 const hide = (elem) => {
   elem.style.display = "none";
+};
+
+const shakeStage = () => {
+  const modal = document.querySelector("#stage");
+  modal.classList.remove("shake");
+  void modal.offsetWidth;
+  modal.classList.add("shake");
 };
 
 const shakeModal = () => {
