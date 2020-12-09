@@ -213,37 +213,37 @@ function spin(timer) {
           divDegTagPoint.style.color = "#e3974d";
         } else {
         }
-        $(".modal-body").empty();
-        $(".modal-body").append(divDegTagPoint);
-        divDegTagPoint.classList.add("shake2");
         boom1Play();
         boom2Play();
         shakeModal();
+        $(".modal-body").empty();
+        $(".modal-body").append(divDegTagPoint);
+        divDegTagPoint.classList.add("shake2");
 
         // 국적
         setTimeout(() => {
           const divNatTagPointer = document.createElement("div");
           divNatTagPointer.className = "player__card-pointer";
-          divNatTagPointer.style.fontSize = "xxx-large";
+          divNatTagPointer.style.fontSize = "12vw";
           divNatTagPointer.innerHTML = 선수[0].nationality;
+          boom3Play();
+          boom4Play();
+          shakeModal();
           $(".modal-body").empty();
           $(".modal-body").append(divNatTagPointer);
           divNatTagPointer.classList.add("shake2");
-          boom1Play();
-          boom2Play();
-          shakeModal();
 
           // 오버롤
           setTimeout(() => {
             const divOvrTagPointer = document.createElement("div");
             divOvrTagPointer.className = "player__card-pointer";
             divOvrTagPointer.innerHTML = 선수[0].overall;
-            $(".modal-body").empty();
-            $(".modal-body").append(divOvrTagPointer);
-            divOvrTagPointer.classList.add("shake2");
             boom1Play();
             boom2Play();
             shakeModal();
+            $(".modal-body").empty();
+            $(".modal-body").append(divOvrTagPointer);
+            divOvrTagPointer.classList.add("shake2");
 
             // 사진
             setTimeout(() => {
@@ -253,15 +253,18 @@ function spin(timer) {
                 "src",
                 "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
               );
+              boom3Play();
+              boom4Play();
+              shakeModal();
               $(".modal-body").empty();
               $(".modal-body").append(imgPlayerPointer);
               imgPlayerPointer.classList.add("shake2");
-              boom1Play();
-              boom2Play();
-              shakeModal();
 
               // 최종
               setTimeout(() => {
+                boom1Play();
+                boom2Play();
+                screamPlay();
                 shakeModal();
                 $(".modal-body").empty();
                 $(".modal-body").append(divTag);
@@ -273,13 +276,10 @@ function spin(timer) {
                 aTag.setAttribute("target", "_blank");
                 aTag.append("PESDB Site GOGO!");
                 $(".modal-body").append(aTag);
-                boom1Play();
-                boom2Play();
-                screamPlay();
-              }, 1000);
-            }, 1000);
-          }, 1000);
-        }, 1000);
+              }, 1100);
+            }, 1100);
+          }, 1100);
+        }, 1100);
       }, 0);
     }
 
@@ -323,7 +323,7 @@ function startPlay() {
 
 function boom1Play() {
   var audio = document.getElementById("boom1-sound");
-  audio.volume = 0.4;
+  audio.volume = 0.7;
   if (audio.paused) {
     audio.play();
   } else {
@@ -335,7 +335,31 @@ function boom1Play() {
 
 function boom2Play() {
   var audio = document.getElementById("boom2-sound");
-  audio.volume = 0.4;
+  audio.volume = 0.7;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
+function boom3Play() {
+  var audio = document.getElementById("boom3-sound");
+  audio.volume = 0.7;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    //audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  }
+}
+
+function boom4Play() {
+  var audio = document.getElementById("boom4-sound");
+  audio.volume = 0.7;
   if (audio.paused) {
     audio.play();
   } else {
