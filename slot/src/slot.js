@@ -311,20 +311,18 @@ function coinSound() {
     audio.currentTime = 0;
   }
 }
-function robotSound() {
-  var audio = document.getElementById("robot-sound");
-  audio.volume = 0.9;
+
+function startPlay() {
+  var audio = document.getElementById("start-sound");
+  audio.volume = 0.8;
   if (audio.paused) {
     audio.play();
   } else {
     audio.pause();
     audio.currentTime = 0;
   }
-}
-
-function startPlay() {
-  var audio = document.getElementById("start-sound");
-  audio.volume = 0.8;
+  audio = document.getElementById("robot-sound");
+  audio.volume = 0.9;
   if (audio.paused) {
     audio.play();
   } else {
@@ -462,7 +460,6 @@ $(document).ready(function () {
     // }
 
     startPlay();
-    robotSound();
 
     if (slotting) {
       //console.log("spinning");
