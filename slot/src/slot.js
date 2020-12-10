@@ -218,8 +218,10 @@ function spin(timer) {
           divDegTagPoint.style.color = "#e3974d";
         } else {
         }
-        boom1Play();
-        boom2Play();
+        //boom1Play();
+        //boom2Play();
+        clickSound();
+        shutterModal(divDegTagPoint);
         shakeModal();
         $(".modal-body").empty();
         $(".modal-body").append(divDegTagPoint);
@@ -229,10 +231,25 @@ function spin(timer) {
         setTimeout(() => {
           const divNatTagPointer = document.createElement("div");
           divNatTagPointer.className = "player__card-pointer";
+          const divFlagWrapper = document.createElement("div");
+          divFlagWrapper.className = "flag-wrapper";
+          const divFlagInner = document.createElement("div");
+          divFlagInner.classList.add(
+            "img-thumbnail",
+            "flag",
+            "flag-icon-background",
+            "flag-icon-" + cvtContryCode(선수[0].nationality).toLowerCase()
+          );
+
+          divFlagWrapper.append(divFlagInner);
+          divNatTagPointer.append(divFlagWrapper);
+
           //divNatTagPointer.style.fontSize = "5vw";
-          divNatTagPointer.innerHTML = 선수[0].nationality;
-          boom3Play();
-          boom4Play();
+          //divNatTagPointer.innerHTML = 선수[0].nationality;
+          //boom3Play();
+          //boom4Play();
+          clickSound();
+          shutterModal(divNatTagPointer);
           shakeModal();
           $(".modal-body").empty();
           $(".modal-body").append(divNatTagPointer);
@@ -243,8 +260,10 @@ function spin(timer) {
             const divOvrTagPointer = document.createElement("div");
             divOvrTagPointer.className = "player__card-pointer";
             divOvrTagPointer.innerHTML = 선수[0].overall;
-            boom1Play();
-            boom2Play();
+            //boom1Play();
+            //boom2Play();
+            clickSound();
+            shutterModal(divOvrTagPointer);
             shakeModal();
             $(".modal-body").empty();
             $(".modal-body").append(divOvrTagPointer);
@@ -258,8 +277,10 @@ function spin(timer) {
                 "src",
                 "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
               );
-              boom3Play();
-              boom4Play();
+              //boom3Play();
+              //boom4Play();
+              clickSound();
+              shutterModal(imgPlayerPointer);
               shakeModal();
               $(".modal-body").empty();
               $(".modal-body").append(imgPlayerPointer);
@@ -267,8 +288,9 @@ function spin(timer) {
 
               // 최종
               setTimeout(() => {
-                boom1Play();
-                boom2Play();
+                //boom1Play();
+                //boom2Play();
+                clickSound();
                 screamPlay();
                 shakeModal();
                 $(".modal-body").empty();
@@ -315,6 +337,8 @@ function coinSound() {
     audio.pause();
     audio.currentTime = 0;
   }
+  var bgm = document.getElementById("bgm-sound");
+  bgm.volume = 0.2;
 }
 
 function twinklePlay() {
@@ -407,6 +431,8 @@ function screamPlay() {
   }
 }
 
+const lastEffect = () => {};
+
 function initSound() {
   var audio = document.getElementById("init-sound");
   audio.volume = 0.3;
@@ -417,6 +443,30 @@ function initSound() {
     audio.currentTime = 0;
   }
 }
+
+const clickSound = () => {
+  var audio = document.getElementById("click-sound");
+  audio.volume = 1.0;
+  audio.pause();
+  audio.currentTime = 0;
+  audio.play();
+};
+
+const audioReset = () => {
+  const audio = document.querySelectorAll("audio");
+  for (num in audio) {
+    const el = audio[num];
+    console.log(el);
+    if (el.id == "bgm-sound") {
+      el.volume = 0.6;
+    } else {
+      if (el.pause) {
+        el.pause();
+        el.currentTime = 0;
+      }
+    }
+  }
+};
 
 function clipboardCopy() {
   const tmpTxt = document.createElement("textarea");
@@ -437,6 +487,7 @@ function clipboardCopy() {
   tmpTxt.select();
   let succesful = document.execCommand("copy");
   modalBody.removeChild(tmpTxt);
+
   //console.log("copy : ", succesful);
 }
 
@@ -451,10 +502,18 @@ const hide = (elem) => {
 };
 
 const shakeStage = () => {
-  const modal = document.querySelector("#stage");
-  modal.classList.remove("shake");
-  void modal.offsetWidth;
-  modal.classList.add("shake");
+  const stage = document.querySelector("#stage");
+  stage.classList.remove("shake");
+  void stage.offsetWidth;
+  stage.classList.add("shake");
+};
+
+const shutterModal = (el) => {
+  if (el) {
+    el.classList.remove("flash");
+    void el.offsetWidth;
+    el.classList.add("flash");
+  }
 };
 
 const shakeModal = () => {
@@ -464,7 +523,28 @@ const shakeModal = () => {
   modal.classList.add("shake");
 };
 
+const cvtContryCode = (param) => {
+  const upperParam = param.toUpperCase();
+  return cList.filter(function (cObj) {
+    return cObj.Country.toUpperCase().includes(upperParam) === true;
+  })[0].Alpha2;
+};
+
+const preLoad = () => {
+  cList.map((el) => {
+    try {
+      const img = document.createElement("img");
+      img.src = "./flags/4x3/" + el.Alpha2.toLowerCase() + ".svg";
+      img.style = "display:none;";
+      document.body.appendChild(img);
+    } catch (e) {}
+  });
+};
+
 $(document).ready(function () {
+  preLoad();
+  audioReset();
+
   // 1.슬롯만들기
   createSlots($("#ring1"));
   createSlots($("#ring2"));
@@ -533,12 +613,14 @@ $(document).ready(function () {
     //console.log(playerName);
 
     clipboardCopy();
+    audioReset();
     $("textarea").focusout();
     $("#closeBtn").click();
   });
 
   $("#closeBtn").on("click", function (e) {
     clipboardCopy();
+    audioReset();
   });
 
   $("textarea").focusout(function () {
