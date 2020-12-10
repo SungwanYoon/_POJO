@@ -436,9 +436,13 @@ function screamPlay() {
 
 const lastSound = (선수) => {
   const overall = 선수.overall;
-  var audio = document.getElementById(overall + "-sound");
-  audio.volume = 0.8;
-  audio.play();
+  try {
+    var audio = document.getElementById(overall + "-sound");
+    audio.volume = 0.8;
+    audio.play();
+  } catch (error) {
+    screamPlay();
+  }
 
   var bgm = document.getElementById("bgm-sound");
   bgm.volume = 0;
