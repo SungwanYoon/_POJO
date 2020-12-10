@@ -205,86 +205,94 @@ function spin(timer) {
       // 등급 > 국적 > 오버롤 > 사진 > 정리
       // 등급
       setTimeout(() => {
-        const divDegTagPoint = document.createElement("div");
-        divDegTagPoint.className = "player__card-pointer";
-        divDegTagPoint.innerHTML = 선수[0].degree;
-        if (선수[0].degree == "S") {
-          divDegTagPoint.style.color = "#afe1f8";
-        } else if (선수[0].degree == "A") {
-          divDegTagPoint.style.color = "#fff389";
-        } else if (선수[0].degree == "B") {
-          divDegTagPoint.style.color = "#efefef";
-        } else if (선수[0].degree == "C") {
-          divDegTagPoint.style.color = "#e3974d";
-        } else {
-        }
-        //boom1Play();
-        //boom2Play();
-        clickSound();
-        shutterModal(divDegTagPoint);
-        shakeModal();
-        $(".modal-body").empty();
-        $(".modal-body").append(divDegTagPoint);
-        divDegTagPoint.classList.add("shake2");
+        try {
+          const divDegTagPoint = document.createElement("div");
+          divDegTagPoint.className = "player__card-pointer";
+          divDegTagPoint.innerHTML = 선수[0].degree;
+          if (선수[0].degree == "S") {
+            divDegTagPoint.style.color = "#afe1f8";
+          } else if (선수[0].degree == "A") {
+            divDegTagPoint.style.color = "#fff389";
+          } else if (선수[0].degree == "B") {
+            divDegTagPoint.style.color = "#efefef";
+          } else if (선수[0].degree == "C") {
+            divDegTagPoint.style.color = "#e3974d";
+          } else {
+          }
+          //boom1Play();
+          //boom2Play();
+          clickSound();
+          shutterModal(divDegTagPoint);
+          shakeModal();
+          $(".modal-body").empty();
+          $(".modal-body").append(divDegTagPoint);
+          divDegTagPoint.classList.add("shake2");
+        } catch (error) {}
 
         // 국적
         setTimeout(() => {
-          const divNatTagPointer = document.createElement("div");
-          divNatTagPointer.className = "player__card-pointer";
-          const divFlagWrapper = document.createElement("div");
-          divFlagWrapper.className = "flag-wrapper";
-          const divFlagInner = document.createElement("div");
-          divFlagInner.classList.add(
-            "img-thumbnail",
-            "flag",
-            "flag-icon-background",
-            "flag-icon-" + cvtContryCode(선수[0].nationality).toLowerCase()
-          );
+          try {
+            const divNatTagPointer = document.createElement("div");
+            divNatTagPointer.className = "player__card-pointer";
+            const divFlagWrapper = document.createElement("div");
+            divFlagWrapper.className = "flag-wrapper";
+            const divFlagInner = document.createElement("div");
+            divFlagInner.classList.add(
+              "img-thumbnail",
+              "flag",
+              "flag-icon-background",
+              "flag-icon-" + cvtContryCode(선수[0].nationality).toLowerCase()
+            );
 
-          divFlagWrapper.append(divFlagInner);
-          divNatTagPointer.append(divFlagWrapper);
+            divFlagWrapper.append(divFlagInner);
+            divNatTagPointer.append(divFlagWrapper);
 
-          //divNatTagPointer.style.fontSize = "5vw";
-          //divNatTagPointer.innerHTML = 선수[0].nationality;
-          //boom3Play();
-          //boom4Play();
-          clickSound();
-          shutterModal(divNatTagPointer);
-          shakeModal();
-          $(".modal-body").empty();
-          $(".modal-body").append(divNatTagPointer);
-          divNatTagPointer.classList.add("shake2");
+            //divNatTagPointer.style.fontSize = "5vw";
+            //divNatTagPointer.innerHTML = 선수[0].nationality;
+            //boom3Play();
+            //boom4Play();
+            clickSound();
+            shutterModal(divNatTagPointer);
+            shakeModal();
+            $(".modal-body").empty();
+            $(".modal-body").append(divNatTagPointer);
+            divNatTagPointer.classList.add("shake2");
+          } catch (error) {}
 
           // 오버롤
           setTimeout(() => {
-            const divOvrTagPointer = document.createElement("div");
-            divOvrTagPointer.className = "player__card-pointer";
-            divOvrTagPointer.innerHTML = 선수[0].overall;
-            //boom1Play();
-            //boom2Play();
-            clickSound();
-            shutterModal(divOvrTagPointer);
-            shakeModal();
-            $(".modal-body").empty();
-            $(".modal-body").append(divOvrTagPointer);
-            divOvrTagPointer.classList.add("shake2");
+            try {
+              const divOvrTagPointer = document.createElement("div");
+              divOvrTagPointer.className = "player__card-pointer";
+              divOvrTagPointer.innerHTML = 선수[0].overall;
+              //boom1Play();
+              //boom2Play();
+              clickSound();
+              shutterModal(divOvrTagPointer);
+              shakeModal();
+              $(".modal-body").empty();
+              $(".modal-body").append(divOvrTagPointer);
+              divOvrTagPointer.classList.add("shake2");
+            } catch (error) {}
 
             // 사진
             setTimeout(() => {
-              const imgPlayerPointer = document.createElement("img");
-              imgPlayerPointer.className = "player__card-pointer";
-              imgPlayerPointer.setAttribute(
-                "src",
-                "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
-              );
-              //boom3Play();
-              //boom4Play();
-              clickSound();
-              shutterModal(imgPlayerPointer);
-              shakeModal();
-              $(".modal-body").empty();
-              $(".modal-body").append(imgPlayerPointer);
-              imgPlayerPointer.classList.add("shake2");
+              try {
+                const imgPlayerPointer = document.createElement("img");
+                imgPlayerPointer.className = "player__card-pointer";
+                imgPlayerPointer.setAttribute(
+                  "src",
+                  "http://pesdb.net/pes2021/images/players/" + playerID + ".png"
+                );
+                //boom3Play();
+                //boom4Play();
+                clickSound();
+                shutterModal(imgPlayerPointer);
+                shakeModal();
+                $(".modal-body").empty();
+                $(".modal-body").append(imgPlayerPointer);
+                imgPlayerPointer.classList.add("shake2");
+              } catch (error) {}
 
               // 최종
               setTimeout(() => {

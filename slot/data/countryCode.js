@@ -1427,6 +1427,7 @@ const cList = [
     Alpha3: "VUT",
     Numeric: "548",
   },
+
   {
     Country: "Venezuela (Bolivarian Republic of)",
     Alpha2: "VE",
@@ -1486,5 +1487,30 @@ const cList = [
     Alpha2: "AX",
     Alpha3: "ALA",
     Numeric: "248",
+  },
+
+  {
+    Country: "NORTHERN IRELAND",
+    Alpha2: "gb-nir",
+    Alpha3: "nir",
+    Numeric: "000",
+  },
+  {
+    Country: "SCOTLAND",
+    Alpha2: "gb-sct",
+    Alpha3: "sct",
+    Numeric: "000",
+  },
+  {
+    Country: "WALES",
+    Alpha2: "gb-wls",
+    Alpha3: "wls",
+    Numeric: "000",
+  },
+  {
+    Country: "England",
+    Alpha2: "gb-eng",
+    Alpha3: "ENG",
+    Numeric: "000",
   },
 ];
