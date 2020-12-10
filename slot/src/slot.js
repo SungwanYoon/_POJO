@@ -118,9 +118,11 @@ function spin(timer) {
     return pList.id === playerID;
   });
 
-  if (선수[0].degree == "S") {
-    twinklePlay();
-    shakeStage();
+  if (선수.length != 0) {
+    if (선수[0].degree == "S") {
+      twinklePlay();
+      shakeStage();
+    }
   }
 
   setTimeout(function () {
@@ -588,6 +590,12 @@ $(document).ready(function () {
     //   }, 10000);
     //   return;
     // }
+
+    var bgm = document.getElementById("bgm-sound");
+    if (bgm.paused) {
+      bgm.volume = 0.9;
+      bgm.play();
+    }
 
     startPlay();
 
