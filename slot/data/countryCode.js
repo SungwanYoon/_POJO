@@ -157,7 +157,7 @@ const cList = [
   },
   {
     Country: "Bonaire",
-    Alpha2: " Sint Eustatius and Saba",
+    Alpha2: "BQ",
     Alpha3: "BQ",
     Numeric: "BES",
   },
@@ -1003,7 +1003,7 @@ const cList = [
   },
   {
     Country: "Palestine",
-    Alpha2: " State of",
+    Alpha2: "PS",
     Alpha3: "PS",
     Numeric: "PSE",
   },
@@ -1105,7 +1105,7 @@ const cList = [
   },
   {
     Country: "Saint Helena",
-    Alpha2: " Ascension and Tristan da Cunha",
+    Alpha2: "SH",
     Alpha3: "SH",
     Numeric: "SHN",
   },
@@ -1303,7 +1303,7 @@ const cList = [
   },
   {
     Country: "Tanzania",
-    Alpha2: " United Republic of",
+    Alpha2: "TZ",
     Alpha3: "TZ",
     Numeric: "TZA",
   },

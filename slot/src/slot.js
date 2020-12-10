@@ -290,8 +290,8 @@ function spin(timer) {
               setTimeout(() => {
                 //boom1Play();
                 //boom2Play();
-                clickSound();
-                screamPlay();
+                //clickSound();
+                lastSound(선수[0]);
                 shakeModal();
                 $(".modal-body").empty();
                 $(".modal-body").append(divTag);
@@ -362,6 +362,9 @@ function startPlay() {
     audio.pause();
     audio.currentTime = 0;
   }
+}
+
+const robotSound = () => {
   audio = document.getElementById("robot-sound");
   audio.volume = 0.9;
   if (audio.paused) {
@@ -370,7 +373,7 @@ function startPlay() {
     audio.pause();
     audio.currentTime = 0;
   }
-}
+};
 
 function boom1Play() {
   var audio = document.getElementById("boom1-sound");
@@ -431,7 +434,15 @@ function screamPlay() {
   }
 }
 
-const lastEffect = () => {};
+const lastSound = (선수) => {
+  const overall = 선수.overall;
+  var audio = document.getElementById(overall + "-sound");
+  audio.volume = 0.8;
+  audio.play();
+
+  var bgm = document.getElementById("bgm-sound");
+  bgm.volume = 0;
+};
 
 function initSound() {
   var audio = document.getElementById("init-sound");
@@ -456,7 +467,7 @@ const audioReset = () => {
   const audio = document.querySelectorAll("audio");
   for (num in audio) {
     const el = audio[num];
-    console.log(el);
+    //console.log(el);
     if (el.id == "bgm-sound") {
       el.volume = 0.6;
     } else {
@@ -537,7 +548,10 @@ const preLoad = () => {
       img.src = "./flags/4x3/" + el.Alpha2.toLowerCase() + ".svg";
       img.style = "display:none;";
       document.body.appendChild(img);
-    } catch (e) {}
+      //console.log(el.Alpha2.toLowerCase() + ".svg");
+    } catch (e) {
+      console.log(e);
+    }
   });
 };
 
