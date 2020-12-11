@@ -123,6 +123,12 @@ function spin(timer) {
       twinklePlay();
       shakeStage();
     }
+    // preload
+    const preImg = document.createElement("img");
+    preImg.src =
+      "http://pesdb.net/pes2021/images/players/" + 선수[0].id + ".png";
+    preImg.style = "display:none;";
+    document.body.appendChild(preImg);
   }
 
   setTimeout(function () {
@@ -593,7 +599,7 @@ $(document).ready(function () {
 
     var bgm = document.getElementById("bgm-sound");
     if (bgm.paused) {
-      bgm.volume = 0.9;
+      bgm.volume = 0.2;
       bgm.play();
     }
 
